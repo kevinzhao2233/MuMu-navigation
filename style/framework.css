@@ -1,3 +1,15 @@
+/* @media screen and (min-width: 320px){
+  html{
+    font-size: calc(screen * 0.138889)px;
+  }
+}
+  
+@media screen and (min-width: 720px){
+  html{
+    font-size: 100px;
+  }
+} */
+
 body,
 div,
 form,
@@ -11,8 +23,8 @@ li {
   padding: 0;
 }
 
-html {
-  font-size: 20px;
+a{
+  text-decoration: none;
 }
 
 .main {
@@ -38,6 +50,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 300vw;
   height: 300vw;
   border-radius: 50%;
@@ -52,7 +65,7 @@ html {
   justify-content: space-around;
   width: 7vw;
   height: 7vw;
-  transform: translate3d(105vw, calc(150vw - 78vh + 10vw), 0)
+  transform: translate3d(-42vw, calc(150vw - 68vh + 10vw), 0)
 }
 
 .set-btn span {
@@ -71,9 +84,50 @@ html {
 	width: 3vw;
 }
 
-.fastBtn {
+.fast-btn-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 90vw;
+  height: 36vw;
+  transform: translate3d(0vw, calc(150vw - 24vh), 0);
+  background-color: #fff;
 }
+
+.fast-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 18vw;
+  height: 18vw;
+  padding: 2vw;
+  box-sizing: border-box;
+}
+
+.fast-icon{
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  background-color: #a04cf7;
+}
+
+.fast-title{
+  display: inline-block;
+  font-size: .22rem;
+  text-align: center;
+  color: #454545;
+}
+
+
+/*======临时调试==============*/
+.bg1{
+  background-color: #efeeef;
+}
+.bg2{
+  background-color: #cccfcc;
+}
+
 
 .up-search {
   display: flex;
@@ -89,6 +143,7 @@ html {
 .up {
   flex: 2;
   text-align: center;
+  font-size: .24rem;
 }
 
 .search-fake {
@@ -98,14 +153,12 @@ html {
 }
 
 .search-fake-frame {
-  height: 2rem;
+  height: .8rem;
   width: 90vw;
-  font-size: 1em;
   border: 1px solid #454545;
   border-radius: 1rem;
   background-color: #fff;
   box-shadow: .5vw 1vw 3vw #cb9aff;
-  text-indent: 1rem;
 }
 
 .search-form {
@@ -117,14 +170,14 @@ html {
 }
 
 .search-input {
-  height: 2rem;
+  height: .5rem;
   width: 90vw;
-  font-size: 1em;
+  font-size: .24em;
   border: 1px solid #454545;
   border-radius: 1rem;
   background-color: #fff;
   box-shadow: 1vw 1vw 3vw #cb9aff;
-  text-indent: 1rem;
+  text-indent: .24rem;
 }
 
 .search-input:focus {
@@ -138,6 +191,10 @@ html {
   width: 100vw;
   height: 300vw;
   background-color: #fff;
+}
+
+.tools-item{
+  font-size: .32rem;
 }
 
 .setBg{
@@ -162,7 +219,8 @@ html {
 }
 
 .set-item{
-	border-bottom: 1px solid #454545;
+  border-bottom: 1px solid #454545;
+  font-size: .32rem;
 }
 
 .set-back{
