@@ -13,9 +13,34 @@ $(document).ready(function () {
 		$('#setBackground').css('display', 'block');
 	})
 
-	$(document).on('touchend', '#setBackground, #set', function(){
+	$(document).on('touchend', '#setBackground, #set', function () {
 		$('#set').css('transform', 'translateX(-60vw)');
 		$('#setBackground').css('display', 'none');
 	})
 
+	// 点击弹出搜索框
+	$(document).on('touchend', '#searchFake', function () {
+		$('#arc').addClass('arc-active');
+		$('.up-search').addClass('up-search-active');
+		setTimeout(function () {
+			$('#search').addClass('search-active');
+		}, 150);
+		setTimeout(function () {
+			$('#searchInput').trigger('focus');
+		}, 150)
+	})
+
+	// 提交搜索内容
+	$(document).submit(function () {
+		return search();
+	})
+
 })
+
+function search() {
+	if ($('#searchInput').val() != "") {
+		window.location.href = "https://m.baidu.com/s?word=" + $('#searchInput').val();
+		$("#searchInput").val("");
+	}
+	return false;
+}
