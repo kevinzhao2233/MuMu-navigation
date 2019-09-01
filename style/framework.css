@@ -176,13 +176,7 @@ a {
 
 .search-e-icon img{
   width: .5rem;
-
-}
-
-.search-e-icon span{
-  font-size: .4rem;
-  color: #a04cf7;
-  display: block;
+  /* transform: translateY(-0.5rem); */
 }
 
 .search {
@@ -347,7 +341,7 @@ a {
 }
 
 #searchE_item :nth-child(2){
-  background-position: 0 -7vw;
+  background-position: 0 -8vw;
 }
 
 #searchE_item :nth-child(3){

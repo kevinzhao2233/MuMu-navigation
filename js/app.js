@@ -23,6 +23,10 @@ $(document).ready(function () {
 		$('html').css('font-size', 100);
 	}
 
+	// ======== 初始化搜索框图标
+	$('#searchE_ico').css("transform", localStorage.getItem("SEARCH_E_ICO"));
+	console.log(localStorage.getItem("SEARCH_E_ICO"));
+
 	// ======== 设置板块
 	$(document).on('touchend', '#setBtn', function () {
 		$('#set').css('transform', 'translateX(0)');
@@ -48,27 +52,41 @@ $(document).ready(function () {
 
 	// 提交搜索内容
 	$(document).submit(function () {
-		var nowTranslateE = localStorage.getItem("TRANSLATE");
+		var nowTranslateE = localStorage.getItem("SEARCH_E");
 		return search(nowTranslateE);
 	})
 
 	// 更换搜索引擎
 	// ###################### 还需改进
-	$(document).on('touchend', '#search_baidu', function(){
-		localStorage.setItem("TRANSLATE", translateE.baidu)
-	})
-	$(document).on('touchend', '#search_google', function(){
-		localStorage.setItem("TRANSLATE", translateE.google)
-	})
-	$(document).on('touchend', '#search_bing', function(){
-		localStorage.setItem("TRANSLATE", translateE.bing)
-	})
-	$(document).on('touchend', '#search_shenma', function(){
-		localStorage.setItem("TRANSLATE", translateE.shenma)
-	})
-	$(document).on('touchend', '#search_sougou', function(){
-		localStorage.setItem("TRANSLATE", translateE.sougou)
-	})
+	$('#searchE_item span').on('touchend', function () {
+		switch (this.id) {
+			case "search_baidu":
+				localStorage.setItem("SEARCH_E", translateE.baidu);
+				localStorage.setItem("SEARCH_E_ICO", "translateY(0)")
+				$('#searchE_ico').css('transform', 'translateY(0)');
+				break;
+			case "search_google":
+				localStorage.setItem("SEARCH_E", translateE.google);
+				localStorage.setItem("SEARCH_E_ICO", "translateY(-0.5rem)")
+				$('#searchE_ico').css('transform', 'translateY(-0.5rem)');
+				break;
+			case "search_bing":
+				localStorage.setItem("SEARCH_E", translateE.bing);
+				localStorage.setItem("SEARCH_E_ICO", "translateY(-1rem)")
+				$('#searchE_ico').css('transform', 'translateY(-1rem)');
+				break;
+			case "search_shenma":
+				localStorage.setItem("SEARCH_E", translateE.shenma);
+				localStorage.setItem("SEARCH_E_ICO", "translateY(-1.5rem)")
+				$('#searchE_ico').css('transform', 'translateY(-1.5rem)');
+				break;
+			case "search_sougou":
+				localStorage.setItem("SEARCH_E", translateE.sougou);
+				localStorage.setItem("SEARCH_E_ICO", "translateY(-2rem)")
+				$('#searchE_ico').css('transform', 'translateY(-2rem)');
+				break;
+		}
 
+	})
 })
 
