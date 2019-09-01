@@ -1,3 +1,19 @@
+var translateE = {
+	baidu: "https://m.baidu.com/s?word=",
+	google: "https://www.google.com/search?q=",
+	bing: "https://cn.bing.com/search?q=",
+	shenma: "https://m.sm.cn/s?q=",
+	sougou: "https://www.sogou.com/web?query="
+}
+
+function search(translateE) {
+	if ($('#searchInput').val() != "") {
+		window.location.href = translateE + $('#searchInput').val();
+		$("#searchInput").val("");
+	}
+	return false;
+}
+
 $(document).ready(function () {
 	// ======== 设置 html 的 fontsize，确定 rem 单位的大小
 	var screenWidth = $(window).width();
@@ -13,7 +29,7 @@ $(document).ready(function () {
 		$('#setBackground').css('display', 'block');
 	})
 
-	$(document).on('touchend', '#setBackground, #set', function () {
+	$(document).on('touchend', '#setBackground, #setBack', function () {
 		$('#set').css('transform', 'translateX(-60vw)');
 		$('#setBackground').css('display', 'none');
 	})
@@ -32,15 +48,27 @@ $(document).ready(function () {
 
 	// 提交搜索内容
 	$(document).submit(function () {
-		return search();
+		var nowTranslateE = localStorage.getItem("TRANSLATE");
+		return search(nowTranslateE);
+	})
+
+	// 更换搜索引擎
+	// ###################### 还需改进
+	$(document).on('touchend', '#search_baidu', function(){
+		localStorage.setItem("TRANSLATE", translateE.baidu)
+	})
+	$(document).on('touchend', '#search_google', function(){
+		localStorage.setItem("TRANSLATE", translateE.google)
+	})
+	$(document).on('touchend', '#search_bing', function(){
+		localStorage.setItem("TRANSLATE", translateE.bing)
+	})
+	$(document).on('touchend', '#search_shenma', function(){
+		localStorage.setItem("TRANSLATE", translateE.shenma)
+	})
+	$(document).on('touchend', '#search_sougou', function(){
+		localStorage.setItem("TRANSLATE", translateE.sougou)
 	})
 
 })
 
-function search() {
-	if ($('#searchInput').val() != "") {
-		window.location.href = "https://m.baidu.com/s?word=" + $('#searchInput').val();
-		$("#searchInput").val("");
-	}
-	return false;
-}

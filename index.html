@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scale=0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta name="full-screen" content="true">
 	<meta name="orientation" content="portrait">
 	<meta name="browsermode" content="application">
@@ -17,6 +17,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>MuMu导航</title>
 	<link rel="stylesheet" href="./style/framework.css">
+	<link rel="stylesheet" href="./static/icon/iconfont.css">
 </head>
 
 <body>
@@ -24,12 +25,12 @@
 		<!-- ======= 导航 ====== -->
 		<div class="nav">
 			<div class="fast">
+				<div class="set-btn" id="setBtn">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
 				<div class="arc" id="arc">
-					<div class="set-btn" id="setBtn">
-						<span></span>
-						<span></span>
-						<span></span>
-					</div>
 					<div class="fast-btn-box">
 						<div class="fast-item bg2">
 							<a href="" class="fast-icon">
@@ -65,7 +66,12 @@
 					<span>上</span>
 				</div>
 				<div class="search-fake">
-					<div class="search-fake-frame" id="searchFake"></div>
+					<div class="search-fake-frame" id="searchFake">
+						<div class="search-e-icon">
+							<img src="./static/img/searchE.png" alt="">
+							<!-- <span class="iconfont icon-icon5"></span> -->
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -89,7 +95,9 @@
 		<!-- ======= 设置 ======= -->
 		<div class="set" id="set">
 			<div class="set-back" id="setBack">
-
+				<span></span>
+				<span></span>
+				<span></span>
 			</div>
 			<!-- <div class="empty"></div> -->
 			<div class="set-item head">
@@ -98,8 +106,12 @@
 				</div>
 				<h2 class="head-name">登录</h2>
 			</div>
+			<div class="set-th"></div>
 			<div class="set-item theme">
-				<h3 class="set-item-tit">主题</h3>
+				<h3 class="set-item-tit">
+					<span class="iconfont icon-pifu"></span>
+					主题
+				</h3>
 				<div class="set-chose-box set-chose-small">
 					<span></span>
 					<span></span>
@@ -109,24 +121,36 @@
 				</div>
 			</div>
 			<div class="set-item searchE">
-				<h3 class="set-item-tit">搜索引擎</h3>
-				<div class="set-chose-box set-chose-small">
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
+				<h3 class="set-item-tit">
+					<span class="iconfont icon-sousuo"></span>
+					搜索引擎
+				</h3>
+				<div class="set-chose-box set-chose-small" id="searchE_item">
+					<span id="search_baidu"></span>
+					<span id="search_google"></span>
+					<span id="search_bing"></span>
+					<span id="search_shenma"></span>
+					<span id="search_sougou"></span>
 				</div>
 			</div>
 			<div class="set-item translateE">
-				<h3 class="set-item-tit">翻译引擎</h3>
+				<h3 class="set-item-tit">
+					<span class="iconfont icon-translate"></span>
+					翻译引擎
+				</h3>
 				<div class="set-chose-box set-chose-big">
 					<span><img src="" alt=""></span>
 					<span><img src="" alt=""></span>
 					<span><img src="" alt=""></span>
 				</div>
 			</div>
-			<div class="set-item agreement">服务协议</div>
+			<div class="set-th"></div>
+			<div class="set-item agreement">
+				<h3 class="set-item-tit">
+					<span class="iconfont icon-xieyi"></span>
+					服务协议
+				</h3>
+			</div>
 			<div class="empty"></div>
 		</div>
 		<div class="setBg" id="setBackground"></div>
