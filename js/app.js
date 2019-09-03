@@ -17,7 +17,8 @@ function search(translateE) {
 function changeSearchE(whSearchE, offset) {
 	localStorage.setItem("SEARCH_E", whSearchE);
 	localStorage.setItem("SEARCH_E_ICO", "translateY(" + offset + ")")
-	$('#searchE_ico').css('transform', 'translateY(' + offset + ')');
+	$('#searchE_f_ico').css('transform', 'translateY(' + offset + ')');
+	$('#searchE_b_ico').css('transform', 'translateY(' + offset + ')');
 }
 
 //阻止默认行为函数
@@ -25,11 +26,20 @@ function preventDefault(e) {
 	e.preventDefault();
 }
 
-// // 禁用触摸滚动页面
-// document.addEventListener('touchmove', preventDefault, { passive: false });
+// 组织touchmove 之后调用 touchend    牺牲兼容性，优化性能
+function stopTouchendPropagationAfterScroll() {
+	var locked = false;
+	window.addEventListener('scroll', function () {
+		locked || (locked = true, window.addEventListener('touchend', stopTouchendPropagation, true));
+	}, true);
+	function stopTouchendPropagation(ev) {
+		ev.stopPropagation();
+		window.removeEventListener('touchend', stopTouchendPropagation, true);
+		locked = false;
+	}
+}
+stopTouchendPropagationAfterScroll();
 
-// // 恢复触摸滚动页面
-// document.removeEventListener('touchmove', preventDefault, { passive: false });
 
 $(document).ready(function () {
 	// ======== 设置 html 的 fontsize，确定 rem 单位的大小
@@ -41,8 +51,8 @@ $(document).ready(function () {
 	}
 
 	// ======== 初始化搜索框图标
-	$('#searchE_ico').css("transform", localStorage.getItem("SEARCH_E_ICO"));
-	console.log(localStorage.getItem("SEARCH_E_ICO"));
+	$('#searchE_f_ico').css("transform", localStorage.getItem("SEARCH_E_ICO"));
+	$('#searchE_b_ico').css("transform", localStorage.getItem("SEARCH_E_ICO"));
 
 	// ======== 设置板块
 	$(document).on('touchend', '#setBtn', function () {
@@ -55,20 +65,28 @@ $(document).ready(function () {
 		$('#set').css({ 'transform': 'translateX(-60vw)', 'transition-duration': '400ms' });
 		$('#setBackground').css({ 'opacity': 0, 'z-index': '-1' });
 		document.removeEventListener('touchmove', preventDefault, { passive: false });
-
 	})
 
-	// 点击弹出搜索框
+	// 弹出搜索框 & 收回搜索框
 	$(document).on('touchend', '#searchFake', function () {
 		$('#arc').addClass('arc-active');
 		$('.up-search').addClass('up-search-active');
 		setTimeout(function () {
 			$('#search').addClass('search-active');
-		}, 150);
-		setTimeout(function () {
 			$('#searchInput').trigger('focus');
-		}, 150)
+		}, 150);
 	})
+
+	$(document).on('touchend', '#searchCancel', function () {
+		$('#searchInput').trigger('blur');
+		$('#search').removeClass('search-active');
+		setTimeout(function(){
+			$('#arc').removeClass('arc-active');
+			$('.up-search').removeClass('up-search-active');
+		}, 150);
+	})
+
+	
 
 	// 提交搜索内容
 	$(document).submit(function () {
