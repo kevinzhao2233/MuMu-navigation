@@ -337,6 +337,11 @@ a {
 .set-chose-box span {
   background-color: var(--theme_color);
   border-radius: 50%;
+  border: 2px solid #b6b6b6;
+}
+
+.set-chose-box span.chose{
+  border: 2px solid var(--theme_color);
 }
 
 .set-chose-small span {

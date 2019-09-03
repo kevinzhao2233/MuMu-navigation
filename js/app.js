@@ -1,4 +1,6 @@
-var translateE = {
+var searchENumber = 0;			// 默认为第一个搜索引擎
+
+var searchE = {
 	baidu: "https://m.baidu.com/s?word=",
 	google: "https://www.google.com/search?q=",
 	bing: "https://cn.bing.com/search?q=",
@@ -6,19 +8,22 @@ var translateE = {
 	sougou: "https://www.sogou.com/web?query="
 }
 // 搜索
-function search(translateE) {
+function search(whSearch) {				// 接收 string
 	if ($('#searchInput').val() != "") {
-		window.location.href = translateE + $('#searchInput').val();
+		window.location.href = searchE[whSearch + ""] + $('#searchInput').val();
 		$("#searchInput").val("");
 	}
 	return false;
 }
+
 // 改变搜索引擎
 function changeSearchE(whSearchE, offset) {
 	localStorage.setItem("SEARCH_E", whSearchE);
-	localStorage.setItem("SEARCH_E_ICO", "translateY(" + offset + ")")
-	$('#searchE_f_ico').css('transform', 'translateY(' + offset + ')');
-	$('#searchE_b_ico').css('transform', 'translateY(' + offset + ')');
+	localStorage.setItem("SEARCH_E_ICO", offset);
+	$('#searchE_f_ico').css('transform', 'translateY(' + offset * -0.5 + 'rem)');
+	$('#searchE_b_ico').css('transform', 'translateY(' + offset * -0.5 + 'rem)');
+	$('#searchE_item span').removeClass('chose');
+	$('#searchE_item span').eq(searchENumber).addClass('chose');
 }
 
 //阻止默认行为函数
@@ -26,7 +31,8 @@ function preventDefault(e) {
 	e.preventDefault();
 }
 
-// 组织touchmove 之后调用 touchend    牺牲兼容性，优化性能
+
+// 阻止touchmove 之后调用 touchend    牺牲兼容性，优化性能
 function stopTouchendPropagationAfterScroll() {
 	var locked = false;
 	window.addEventListener('scroll', function () {
@@ -50,9 +56,12 @@ $(document).ready(function () {
 		$('html').css('font-size', 100);
 	}
 
-	// ======== 初始化搜索框图标
-	$('#searchE_f_ico').css("transform", localStorage.getItem("SEARCH_E_ICO"));
-	$('#searchE_b_ico').css("transform", localStorage.getItem("SEARCH_E_ICO"));
+	// ======== 初始化搜索框图标 & 设置界面默认搜索引图标
+	searchENumber = localStorage.getItem("SEARCH_E_ICO");
+	$('#searchE_f_ico').css("transform", "translateY(" + searchENumber * -0.5 + "rem)");
+	$('#searchE_b_ico').css("transform", "translateY(" + searchENumber * -0.5 + "rem)");
+	$('#searchE_item span').removeClass('chose');
+	$('#searchE_item span').eq(searchENumber).addClass('chose');
 
 	// ======== 设置板块
 	$(document).on('touchend', '#setBtn', function () {
@@ -76,17 +85,16 @@ $(document).ready(function () {
 			$('#searchInput').trigger('focus');
 		}, 150);
 	})
-
+	// 收回搜索框
 	$(document).on('touchend', '#searchCancel', function () {
 		$('#searchInput').trigger('blur');
 		$('#search').removeClass('search-active');
-		setTimeout(function(){
+		setTimeout(function () {
 			$('#arc').removeClass('arc-active');
 			$('.up-search').removeClass('up-search-active');
 		}, 150);
 	})
 
-	
 
 	// 提交搜索内容
 	$(document).submit(function () {
@@ -95,26 +103,9 @@ $(document).ready(function () {
 	})
 
 	// 更换搜索引擎
-	// ###################### 还需改进
 	$('#searchE_item span').on('touchend', function () {
-		switch (this.id) {
-			case "search_baidu":
-				changeSearchE(translateE.baidu, 0);
-				break;
-			case "search_google":
-				changeSearchE(translateE.google, "-0.5rem");
-				break;
-			case "search_bing":
-				changeSearchE(translateE.bing, "-1rem");
-				break;
-			case "search_shenma":
-				changeSearchE(translateE.shenma, "-1.5rem");
-				break;
-			case "search_sougou":
-				changeSearchE(translateE.sougou, "-2rem");
-				break;
-		}
-
+		searchENumber =  $(this).index();
+		changeSearchE(this.id, searchENumber);
 	})
 })
 
