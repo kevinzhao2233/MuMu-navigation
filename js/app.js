@@ -5,7 +5,7 @@ var translateE = {
 	shenma: "https://m.sm.cn/s?q=",
 	sougou: "https://www.sogou.com/web?query="
 }
-
+// 搜索
 function search(translateE) {
 	if ($('#searchInput').val() != "") {
 		window.location.href = translateE + $('#searchInput').val();
@@ -13,6 +13,23 @@ function search(translateE) {
 	}
 	return false;
 }
+// 改变搜索引擎
+function changeSearchE(whSearchE, offset) {
+	localStorage.setItem("SEARCH_E", whSearchE);
+	localStorage.setItem("SEARCH_E_ICO", "translateY(" + offset + ")")
+	$('#searchE_ico').css('transform', 'translateY(' + offset + ')');
+}
+
+//阻止默认行为函数
+function preventDefault(e) {
+	e.preventDefault();
+}
+
+// // 禁用触摸滚动页面
+// document.addEventListener('touchmove', preventDefault, { passive: false });
+
+// // 恢复触摸滚动页面
+// document.removeEventListener('touchmove', preventDefault, { passive: false });
 
 $(document).ready(function () {
 	// ======== 设置 html 的 fontsize，确定 rem 单位的大小
@@ -29,13 +46,16 @@ $(document).ready(function () {
 
 	// ======== 设置板块
 	$(document).on('touchend', '#setBtn', function () {
-		$('#set').css('transform', 'translateX(0)');
-		$('#setBackground').css('display', 'block');
+		$('#set').css({ 'transform': 'translateX(0)', 'transition-duration': '400ms' });
+		$('#setBackground').css({ 'opacity': 1, 'z-index': '299' });
+		document.addEventListener('touchmove', preventDefault, { passive: false });
 	})
 
 	$(document).on('touchend', '#setBackground, #setBack', function () {
-		$('#set').css('transform', 'translateX(-60vw)');
-		$('#setBackground').css('display', 'none');
+		$('#set').css({ 'transform': 'translateX(-60vw)', 'transition-duration': '400ms' });
+		$('#setBackground').css({ 'opacity': 0, 'z-index': '-1' });
+		document.removeEventListener('touchmove', preventDefault, { passive: false });
+
 	})
 
 	// 点击弹出搜索框
@@ -61,29 +81,19 @@ $(document).ready(function () {
 	$('#searchE_item span').on('touchend', function () {
 		switch (this.id) {
 			case "search_baidu":
-				localStorage.setItem("SEARCH_E", translateE.baidu);
-				localStorage.setItem("SEARCH_E_ICO", "translateY(0)")
-				$('#searchE_ico').css('transform', 'translateY(0)');
+				changeSearchE(translateE.baidu, 0);
 				break;
 			case "search_google":
-				localStorage.setItem("SEARCH_E", translateE.google);
-				localStorage.setItem("SEARCH_E_ICO", "translateY(-0.5rem)")
-				$('#searchE_ico').css('transform', 'translateY(-0.5rem)');
+				changeSearchE(translateE.google, "-0.5rem");
 				break;
 			case "search_bing":
-				localStorage.setItem("SEARCH_E", translateE.bing);
-				localStorage.setItem("SEARCH_E_ICO", "translateY(-1rem)")
-				$('#searchE_ico').css('transform', 'translateY(-1rem)');
+				changeSearchE(translateE.bing, "-1rem");
 				break;
 			case "search_shenma":
-				localStorage.setItem("SEARCH_E", translateE.shenma);
-				localStorage.setItem("SEARCH_E_ICO", "translateY(-1.5rem)")
-				$('#searchE_ico').css('transform', 'translateY(-1.5rem)');
+				changeSearchE(translateE.shenma, "-1.5rem");
 				break;
 			case "search_sougou":
-				localStorage.setItem("SEARCH_E", translateE.sougou);
-				localStorage.setItem("SEARCH_E_ICO", "translateY(-2rem)")
-				$('#searchE_ico').css('transform', 'translateY(-2rem)');
+				changeSearchE(translateE.sougou, "-2rem");
 				break;
 		}
 
