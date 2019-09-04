@@ -32,29 +32,32 @@
 				</div>
 				<div class="arc" id="arc">
 					<div class="fast-btn-box">
-						<div class="fast-item bg2">
-							<a href="" class="fast-icon">
-								<img src="https://www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg" alt="">
-							</a>
-							<a href="" class="fast-title">百度一下</a>
+						<!-- ===== 添加新按钮 -->
+						<div class="fast-edit" id="fastEdit">
+							<form action="" class="fast-form" id="fastForm">
+								<input type="url" class="fast-edit-input" id="editUrl" placeholder="网址链接" autocomplete="off">
+								<input type="text" class="fast-edit-input" id="editTit" placeholder="标题" autocomplete="off">
+								<input autocomplete="off" type="button" value="保存" class="fast-edit-btn" id="editSave">
+							</form>
 						</div>
-						<div class="fast-item bg2">
-							<a href="" class="fast-icon">
-								<img src="https://www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg" alt="">
-							</a>
-							<a href="" class="fast-title">百度一下</a>
-						</div>
-						<div class="fast-item bg2">
-							<a href="" class="fast-icon">
-								<img src="https://www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg" alt="">
-							</a>
-							<a href="" class="fast-title">百度一下</a>
-						</div>
-						<div class="fast-item bg2">
-							<a href="" class="fast-icon">
-								<img src="https://www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg" alt="">
-							</a>
-							<a href="" class="fast-title">百度一下</a>
+						<div class="fast-btn-content" id="fastContent">
+							<div class="fast-item bg2">
+								<a href="" class="fast-icon">
+									<img src="https://www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg" alt="">
+								</a>
+								<span class="fast-title">百度一下</span>
+							</div>
+							<div class="fast-item bg2">
+								<a href="" class="fast-icon">
+									<img src="https://www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg" alt="">
+								</a>
+								<span class="fast-title">百度一下</span>
+							</div>
+							<div class="fast-item bg2" id="addFast">
+								<div class="fast-icon add-fast">
+									<span></span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
