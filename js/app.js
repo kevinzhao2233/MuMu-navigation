@@ -31,7 +31,6 @@ function preventDefault(e) {
 	e.preventDefault();
 }
 
-
 // 阻止touchmove 之后调用 touchend    牺牲兼容性，优化性能
 function stopTouchendPropagationAfterScroll() {
 	var locked = false;
@@ -50,11 +49,15 @@ stopTouchendPropagationAfterScroll();
 $(document).ready(function () {
 	// ======== 设置 html 的 fontsize，确定 rem 单位的大小
 	var screenWidth = $(window).width();
+	var screenHeight = $(window).height();
 	if (screenWidth < 720) {
 		$('html').css('font-size', screenWidth * 0.138889);
 	} else {
 		$('html').css('font-size', 100);
 	}
+	var temp = screenHeight / screenWidth;
+	// 给页面一个固定的vh
+	document.documentElement.style.setProperty("--origin_vh", screenHeight + "px");
 
 	// ======== 初始化搜索框图标 & 设置界面默认搜索引图标
 	searchENumber = localStorage.getItem("SEARCH_E_ICO");
@@ -104,8 +107,44 @@ $(document).ready(function () {
 
 	// 更换搜索引擎
 	$('#searchE_item span').on('touchend', function () {
-		searchENumber =  $(this).index();
+		searchENumber = $(this).index();
 		changeSearchE(this.id, searchENumber);
 	})
+
+	// ======== 快捷按钮板块
+	// 添加按钮
+	$(document).on('touchend', '#addFast', function () {
+		$('#fastEdit').addClass('show-edit');
+		$('#setBtn').addClass('set-btn-hidden');
+	})
+
+	$(document).on('touchend', '#editSave', function () {
+		$('#addFast').css('display', 'block');
+		addFastBtn();
+		if ($('#fastContent').children().length > 10) {
+			$('#addFast').css('display', 'none');
+		}
+		$('#fastEdit').removeClass('show-edit');
+		$('#setBtn').removeClass('set-btn-hidden');
+	})
 })
+
+function addFastBtn() {
+	if ($('#editUrl').val() != '' && $('#editTit').val() != '') {
+		var fastUrl = $('#editUrl').val();
+		var fastTit = $('#editTit').val();
+		var newElement = '<div class="fast-item bg2">' +
+			"<a href = " + fastUrl +
+			" class= 'fast-icon'>" +
+			'<img src="https://www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg" alt="">' +
+			'</a>' +
+			'<span class="fast-title">' + fastTit +
+			'</span>' +
+			'</div >'
+		$('#addFast').before(newElement);
+	}
+	else {
+		console.log("输入错误");
+	}
+}
 

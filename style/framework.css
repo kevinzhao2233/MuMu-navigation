@@ -13,8 +13,15 @@ li {
   padding: 0;
 }
 
+
+
+input{
+  outline: none;
+}
+
 :root {
-  --theme_color: #a04cf7;
+  --theme_color:#a04cf7;
+  --origin_vh: ;      /* 页面刚加载高度，即屏幕高度 */
 }
 
 a {
@@ -29,13 +36,13 @@ a {
 .nav {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: var(--origin_vh);
   z-index: 100;
 }
 
 .fast {
   width: 100vw;
-  height: 84vh;
+  height: calc(var(--origin_vh) * 0.84);
   overflow: hidden;
 }
 
@@ -48,7 +55,7 @@ a {
   height: 300vw;
   border-radius: 50%;
   background-color: var(--theme_color);
-  transform: translate3d(-100vw, calc(78vh - 300vw), 0);
+  transform: translate3d(-100vw, calc(var(--origin_vh) * 0.78 - 300vw), 0);
   box-shadow: 0 2vw 6vw #bb7cff;
 }
 
@@ -56,11 +63,12 @@ a {
 .arc-active {
   opacity: 0;
   transition-duration: 200ms;
-  transform: translate3d(-100vw, calc(78vh - 400vw), 0);
+  transform: translate3d(-100vw, calc(var(--origin_vh) * 0.78 - 400vw), 0);
 }
 
 .set-btn {
   position: absolute;
+  visibility: visible;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -68,6 +76,10 @@ a {
   width: 7vw;
   height: 7vw;
   z-index: 102;
+}
+
+.set-btn-hidden{
+  visibility: hidden;
 }
 
 .set-btn span {
@@ -83,12 +95,16 @@ a {
 }
 
 .fast-btn-box {
+  position: relative;
+  width: 90vw;
+  height: 36vw;
+  transform: translate3d(0vw, calc(150vw - var(--origin_vh) * 0.24 ), 0);
+}
+
+.fast-btn-content{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 90vw;
-  height: 36vw;
-  transform: translate3d(0vw, calc(150vw - 24vh), 0);
 }
 
 .fast-item {
@@ -130,11 +146,79 @@ a {
   white-space: nowrap;
 }
 
+.add-fast{
+  text-align: center;
+}
+
+.add-fast span{
+  height: 10vw;
+  line-height: 10vw;
+}
+
+/* ======== 添加按钮弹出框 */
+.fast-edit{
+  display: none;
+  position: absolute;
+  margin: 0 auto;
+  width: 90vw;
+  height: 3.6rem;
+  background-color: #fff;
+  border-radius: 0.4rem;
+  z-index: 290;
+  transform: translateY(-3.6rem);
+}
+
+.show-edit{
+  display: block;
+  /* visibility: visible; */
+  transition-duration: 400ms;
+}
+
+.fast-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .4rem 0;
+  box-sizing: border-box; 
+}
+
+.fast-form input{
+  padding: 0 .32rem;
+  box-sizing: border-box;
+  width: 80%;
+  height: .68rem;
+  border: none;
+  border-radius: 1rem;
+  line-height: .6rem;
+}
+
+.fast-edit-input{
+  background-color: #ddd;
+  margin-bottom: .2rem;
+  color: #454545;
+  font-size: .28rem;
+}
+
+.fast-edit-btn{
+  background-color: var(--theme_color);
+  margin-top: .3rem;
+  font-size: .32rem;
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+/* ======== 搜索框以及调出工具按钮 */
 .up-search {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 16vh;
+  height: calc(var(--origin_vh) * 0.16);
   background-color: #fff;
   border-top-left-radius: 10vw;
   border-top-right-radius: 10vw;
@@ -225,10 +309,6 @@ a {
 
 .search-cancel {
   margin-right: 3vw;
-}
-
-.search-input:focus {
-  outline: none;
 }
 
 .tools {
