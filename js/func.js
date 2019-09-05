@@ -17,7 +17,7 @@ function changeSearchE(whSearchE, offset) {
 	$('#searchE_item span').eq(searchENumber).addClass('chose');
 }
 
-function addFastBtn() {
+function addFastBtn(fastIndex) {
 	var fastUrl = $('#editUrl').val();
 	var fastTit = $('#editTit').val();
 	if (fastUrl != '' && fastTit != '') {
@@ -31,8 +31,8 @@ function addFastBtn() {
 			'<span class="fast-title">' + fastTit +
 			'</span>' +
 			'</div >';
-		if (isOldFast) {
-			console.log(this)
+		if (fastIndex < $('#addFast').index()) {
+			$('#fastContent').children().eq(fastIndex).replaceWith(newElement);
 		} else {
 			$('#addFast').before(newElement);
 		}

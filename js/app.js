@@ -1,5 +1,5 @@
 var searchENumber = 0;			// 默认为第一个搜索引擎
-var isOldFast = 0;
+var whFast;									// 点击了哪个fast，决定是要修改还是添加
 var searchE = {
 	baidu: "https://m.baidu.com/s?word=",
 	google: "https://www.google.com/search?q=",
@@ -71,7 +71,7 @@ $(document).ready(function () {
 
 	// 保存
 	$(document).on('touchend', '#editSave', function () {
-		addFastBtn();
+		addFastBtn(whFast);
 		if ($('#fastContent').children().length > 10) {
 			$('#addFast').css('display', 'none');
 		}
@@ -89,6 +89,6 @@ $(document).ready(function () {
 		var fastTitOld = $(this).next()[0].textContent;
 		$('#editUrl').val(fastUrlOld);
 		$('#editTit').val(fastTitOld);
-		isOldFast = 1;
+		whFast = $(this).parent().index();
 	})
 })
