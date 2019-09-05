@@ -124,7 +124,14 @@ a {
   width: 10vw;
   height: 10vw;
   border-radius: 50%;
-  background-color: #c5c4c4;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.fast-icon-link{
+  background: url(../static/img/liulanqi.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .fast-icon img {
@@ -132,6 +139,23 @@ a {
   width: 10vw;
   height: 10vw;
   border-radius: 50%;
+}
+
+.fast-icon-fg {
+  display: none;
+  position: absolute;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  background-color: rgba(228, 228, 228, 0.4);
+  font-size: 5vw !important;
+  font-weight: 600;
+  text-align: center;
+  line-height: 10vw;
+}
+
+.fast-icon-edit {
+  display: inline-block;
 }
 
 .fast-title {
@@ -301,7 +325,7 @@ a {
   z-index: 10;
   opacity: 0;
   transition-duration: 200ms;
-  transform: translateY(-100vh);
+  transform: translateY(calc(var(--origin_vh) * -1));
 }
 
 .search-active {

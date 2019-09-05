@@ -1,4 +1,5 @@
 var searchENumber = 0;			// 默认为第一个搜索引擎
+var isOldFast = 0;
 var searchE = {
 	baidu: "https://m.baidu.com/s?word=",
 	google: "https://www.google.com/search?q=",
@@ -64,7 +65,7 @@ $(document).ready(function () {
 	})
 
 	// 退出编辑状态
-	$(document).on('touchend', '#editCancel', function(){
+	$(document).on('touchend', '#editCancel', function () {
 		clearFastInput();
 	})
 
@@ -76,5 +77,18 @@ $(document).ready(function () {
 		}
 		$('#setBtn').removeClass('set-btn-hidden');
 	})
-})
 
+	// 长按后进入编辑状态
+	$('.fast-icon').longTap(function () {
+		$('.fast-icon-fg').addClass('fast-icon-edit');
+	})
+
+	$('.fast-icon-fg').on('touchend', function () {
+		$('#fastEdit').addClass('show-edit');
+		var fastUrlOld = $(this).prev()[0].href;
+		var fastTitOld = $(this).next()[0].textContent;
+		$('#editUrl').val(fastUrlOld);
+		$('#editTit').val(fastTitOld);
+		isOldFast = 1;
+	})
+})

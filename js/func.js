@@ -24,13 +24,18 @@ function addFastBtn() {
 		console.log(checkUrl(fastUrl));
 		var newElement = '<div class="fast-item bg2">' +
 			"<a href = " + fastUrl +
-			" class= 'fast-icon'>" +
-			'<img src="https://www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg" alt="">' +
+			" class= 'fast-icon  fast-icon-link'>" +
 			'</a>' +
+			'<span class="iconfont icon-ziyuan fast-icon-fg">' +
+			'</span>' +
 			'<span class="fast-title">' + fastTit +
 			'</span>' +
-			'</div >'
-		$('#addFast').before(newElement);
+			'</div >';
+		if (isOldFast) {
+			console.log(this)
+		} else {
+			$('#addFast').before(newElement);
+		}
 		clearFastInput();
 	}
 	else {
@@ -46,7 +51,7 @@ function checkUrl(testReg) {
 	return strRegex.test(testReg);
 }
 // 清除输入框输入信息
-function clearFastInput(){
+function clearFastInput() {
 	$('#editUrl, #editTit').val("");
 	$('#fastEdit').removeClass('show-edit');
 }
