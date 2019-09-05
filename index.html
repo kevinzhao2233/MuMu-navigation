@@ -31,13 +31,18 @@
 					<span></span>
 				</div>
 				<div class="arc" id="arc">
-					<div class="fast-btn-box">
+					<div class="fast-btn-box" id="fastBox">
 						<!-- ===== 添加新按钮 -->
 						<div class="fast-edit" id="fastEdit">
 							<form action="" class="fast-form" id="fastForm">
-								<input type="url" class="fast-edit-input" id="editUrl" placeholder="网址链接" autocomplete="off">
+								<input type="url" class="fast-edit-input" id="editUrl" placeholder="网址链接" autocomplete="off"
+									οnkeydοwn="if(event.keyCode==13)event.keyCode=9">
 								<input type="text" class="fast-edit-input" id="editTit" placeholder="标题" autocomplete="off">
-								<input autocomplete="off" type="button" value="保存" class="fast-edit-btn" id="editSave">
+								<p class="message">* 请检查输入是否正确</p>
+								<div class="fast-edit-btn">
+									<input type="button" value="取消" class="fast-cancel" id="editCancel">
+									<input type="button" value="保存" class="fast-edit-save" id="editSave">
+								</div>
 							</form>
 						</div>
 						<div class="fast-btn-content" id="fastContent">
@@ -166,6 +171,8 @@
 </body>
 
 <script src="./lib/zepto.js"></script>
+<script src="./js/init.js"></script>
+<script src="./js/func.js"></script>
 <script src="./js/app.js"></script>
 
 </html>

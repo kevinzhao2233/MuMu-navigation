@@ -21,7 +21,7 @@ input{
 
 :root {
   --theme_color:#a04cf7;
-  --origin_vh: ;      /* 页面刚加载高度，即屏幕高度 */
+  --origin_vh: 100vh;      /* 页面刚加载高度，即屏幕高度；默认100vh可以减少load前的页面抖动 */
 }
 
 a {
@@ -188,7 +188,7 @@ a {
   width: 80%;
   height: .68rem;
   border: none;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   line-height: .6rem;
 }
 
@@ -197,13 +197,39 @@ a {
   margin-bottom: .2rem;
   color: #454545;
   font-size: .28rem;
+  border-radius: 1rem;
 }
 
 .fast-edit-btn{
+  display: flex;
+  flex-direction: row;
+  width: 80%;
   background-color: var(--theme_color);
   margin-top: .3rem;
   font-size: .32rem;
   color: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.fast-edit-btn input{
+  width: 50%;
+  color: #fff;
+  background-color: transparent;
+}
+
+.fast-cancel{
+  border-right: 1px solid #b6b6b6 !important;
+}
+
+.message{
+  display: none;
+  font-size: .2rem;
+}
+
+.input-err{
+  display: inline;
+  color: #ff3333;
 }
 
 
