@@ -20,7 +20,7 @@ function changeSearchE(whSearchE, offset) {
 function addFastBtn(fastIndex) {
 	var fastUrl = $('#editUrl').val();
 	var fastTit = $('#editTit').val();
-	if (fastUrl != '' && fastTit != '') {
+	if (fastUrl != '' && fastTit != '') {		// 如果有输入内容，
 		console.log(checkUrl(fastUrl));
 		var newElement = '<div class="fast-item bg2">' +
 			"<a href = " + fastUrl +
@@ -30,20 +30,23 @@ function addFastBtn(fastIndex) {
 			'</span>' +
 			'<span class="fast-title">' + fastTit +
 			'</span>' +
-			'</div >';
-		if (fastIndex < $('#addFast').index()) {
+			'</div >\n';
+		if (fastIndex < $('#addFast').index()) {		// 编辑之前的按钮
 			$('#fastContent').children().eq(fastIndex).replaceWith(newElement);
-		} else {
+		} else {																		// 添加新的按钮
 			$('#addFast').before(newElement);
 		}
 		clearFastInput();
 	}
-	else {
+	else {					// 如果没有输入内容，则提示err
 		$('#fastForm p').addClass('input-err');
 		$(document).on('focus', '#editUrl, #editTit', function () {
 			$('#fastForm p').removeClass('input-err');
 		})
 	}
+
+	// 每次保存后都将这个 btn 盒子保存到 localstorage 中
+	localStorage.setItem("FAST_CONTENT", $('#fastContent').html());
 }
 // 检查 URL 是否正确，这里需要有一级，二级域名和前缀，如www、http
 function checkUrl(testReg) {
