@@ -62,11 +62,15 @@ $(document).ready(function () {
 	$(document).on('touchend', '#addFast', function () {
 		$('#fastEdit').addClass('show-edit');
 		$('#setBtn').addClass('set-btn-hidden');
+		$('#toEdit').addClass('to-edit-hidden');
 	})
 
 	// 退出编辑状态
 	$(document).on('touchend', '#editCancel', function () {
 		clearFastInput();
+		$('.fast-icon-fg').removeClass('fast-icon-edit');
+		$('#setBtn').removeClass('set-btn-hidden');
+		$('#toEdit').removeClass('to-edit-hidden');
 	})
 
 	// 保存
@@ -75,12 +79,12 @@ $(document).ready(function () {
 		if ($('#fastContent').children().length > 10) {
 			$('#addFast').css('display', 'none');
 		}
-		$('#setBtn').removeClass('set-btn-hidden');
+		$('.fast-icon-fg').removeClass('fast-icon-edit');
 	})
 
-	// 长按后进入编辑状态
-	$('.fast-icon').longTap(function () {
-		$('.fast-icon-fg').addClass('fast-icon-edit');
+	// 点击编辑进入编辑状态
+	$(document).on('touchend', '#toEdit', function(){
+		$('.fast-icon-fg').toggleClass('fast-icon-edit');	
 	})
 
 	$('.fast-icon-fg').on('touchend', function () {
@@ -90,5 +94,7 @@ $(document).ready(function () {
 		$('#editUrl').val(fastUrlOld);
 		$('#editTit').val(fastTitOld);
 		whFast = $(this).parent().index();
+		$('#setBtn').addClass('set-btn-hidden');
+		$('#toEdit').addClass('to-edit-hidden');
 	})
 })

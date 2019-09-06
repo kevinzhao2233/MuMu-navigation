@@ -15,18 +15,26 @@ li {
 
 
 
-input{
+input {
   outline: none;
 }
 
 :root {
-  --theme_color:#a04cf7;
-  --origin_vh: 100vh;      /* 页面刚加载高度，即屏幕高度；默认100vh可以减少load前的页面抖动 */
+  --theme_color: #a04cf7;
+  --origin_vh: 100vh;
+  /* 页面刚加载高度，即屏幕高度；默认100vh可以减少load前的页面抖动 */
 }
 
 a {
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a:active, a:hover, a:visited{
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-user-select: none;
+  -moz-user-focus: none;
+  -moz-user-select: none;
 }
 
 .main {
@@ -66,9 +74,10 @@ a {
   transform: translate3d(-100vw, calc(var(--origin_vh) * 0.78 - 400vw), 0);
 }
 
+
 .set-btn {
   position: absolute;
-  visibility: visible;
+  /* visibility: visible; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -78,7 +87,7 @@ a {
   z-index: 102;
 }
 
-.set-btn-hidden{
+.set-btn-hidden {
   visibility: hidden;
 }
 
@@ -94,20 +103,43 @@ a {
   margin-left: 2vw;
 }
 
+.to-edit-btn{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  right: 0;
+  margin: 10vw 4vw;
+  width: 7vw;
+  height: 7vw;
+  z-index: 102;
+}
+
+.to-edit-btn span{
+  color: #fff;
+  font-size: 6vw;
+}
+
+.to-edit-hidden{
+  visibility: hidden;
+}
+
 .fast-btn-box {
   position: relative;
   width: 90vw;
   height: 36vw;
-  transform: translate3d(0vw, calc(150vw - var(--origin_vh) * 0.24 ), 0);
+  transform: translate3d(0vw, calc(150vw - var(--origin_vh) * 0.24), 0);
 }
 
-.fast-btn-content{
+.fast-btn-content {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
 .fast-item {
+  -webkit-touch-callout: none;
+  user-select: none;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -128,7 +160,9 @@ a {
   overflow: hidden;
 }
 
-.fast-icon-link{
+.fast-icon-link {
+  -webkit-user-select: none;  /*禁用手机浏览器的用户选择功能 */
+  -moz-user-select: none;
   background: url(../static/img/liulanqi.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -170,17 +204,17 @@ a {
   white-space: nowrap;
 }
 
-.add-fast{
+.add-fast {
   text-align: center;
 }
 
-.add-fast span{
+.add-fast span {
   height: 10vw;
   line-height: 10vw;
 }
 
 /* ======== 添加按钮弹出框 */
-.fast-edit{
+.fast-edit {
   display: none;
   position: absolute;
   margin: 0 auto;
@@ -192,21 +226,21 @@ a {
   transform: translateY(-3.6rem);
 }
 
-.show-edit{
+.show-edit {
   display: block;
   /* visibility: visible; */
   transition-duration: 400ms;
 }
 
-.fast-form{
+.fast-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: .4rem 0;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
-.fast-form input{
+.fast-form input {
   padding: 0 .32rem;
   box-sizing: border-box;
   width: 80%;
@@ -216,7 +250,7 @@ a {
   line-height: .6rem;
 }
 
-.fast-edit-input{
+.fast-edit-input {
   background-color: #ddd;
   margin-bottom: .2rem;
   color: #454545;
@@ -224,7 +258,7 @@ a {
   border-radius: 1rem;
 }
 
-.fast-edit-btn{
+.fast-edit-btn {
   display: flex;
   flex-direction: row;
   width: 80%;
@@ -236,22 +270,22 @@ a {
   overflow: hidden;
 }
 
-.fast-edit-btn input{
+.fast-edit-btn input {
   width: 50%;
   color: #fff;
   background-color: transparent;
 }
 
-.fast-cancel{
+.fast-cancel {
   border-right: 1px solid #b6b6b6 !important;
 }
 
-.message{
+.message {
   display: none;
   font-size: .2rem;
 }
 
-.input-err{
+.input-err {
   display: inline;
   color: #ff3333;
 }
@@ -470,7 +504,7 @@ a {
   border: 2px solid #b6b6b6;
 }
 
-.set-chose-box span.chose{
+.set-chose-box span.chose {
   border: 2px solid var(--theme_color);
 }
 

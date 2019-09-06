@@ -31,7 +31,9 @@ $(document).ready(function () {
 	document.documentElement.style.setProperty("--origin_vh", screenHeight + "px");
 
 	// ======== 从 localstorage 中获取快捷按钮
-	$('#fastContent').html(localStorage.getItem("FAST_CONTENT"));
+	if (localStorage.getItem("FAST_CONTENT")) {
+		$('#fastContent').html(localStorage.getItem("FAST_CONTENT"));
+	}
 
 	// ======== 初始化搜索框图标 & 设置界面默认搜索引图标
 	searchENumber = localStorage.getItem("SEARCH_E_ICO");
