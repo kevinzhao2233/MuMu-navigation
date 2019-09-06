@@ -1,5 +1,5 @@
 var searchENumber = 0;			// 默认为第一个搜索引擎
-var whFast;									// 点击了哪个fast，决定是要修改还是添加
+var whFast;									// 点击了哪个fast，决定是要修改还是添加以及删除
 var searchE = {
 	baidu: "https://m.baidu.com/s?word=",
 	google: "https://www.google.com/search?q=",
@@ -52,9 +52,9 @@ $(document).ready(function () {
 	})
 
 	// 更换搜索引擎
+	changeSearchE(this.id, searchENumber);
 	$('#searchE_item span').on('touchend', function () {
 		searchENumber = $(this).index();
-		changeSearchE(this.id, searchENumber);
 	})
 
 	// ======== 快捷按钮板块
@@ -63,6 +63,7 @@ $(document).ready(function () {
 		$('#fastEdit').addClass('show-edit');
 		$('#setBtn').addClass('set-btn-hidden');
 		$('#toEdit').addClass('to-edit-hidden');
+		whFast = $('#addFast').index();
 	})
 
 	// 退出编辑状态
@@ -71,20 +72,24 @@ $(document).ready(function () {
 		$('.fast-icon-fg').removeClass('fast-icon-edit');
 		$('#setBtn').removeClass('set-btn-hidden');
 		$('#toEdit').removeClass('to-edit-hidden');
-		localStorage.setItem("FAST_CONTENT", $('#fastContent').html());
+		$('.remove-fast-icon').removeClass('show-remove-fast-icon');
+		saveFastToLocals();
 	})
 
-	// 保存
+	// 编辑状态中的保存
 	$(document).on('touchend', '#editSave', function () {
 		addFastBtn(whFast);
 	})
 
-	// 点击编辑进入编辑状态
+	// 点击右上角编辑进入编辑状态
 	$(document).on('touchend', '#toEdit', function () {
 		$('.fast-icon-fg').toggleClass('fast-icon-edit');
+		$('.remove-fast-icon').toggleClass('show-remove-fast-icon');
 	})
 
-	$('.fast-icon-fg').on('touchend', function () {
+	// 编辑功能
+	$('#fastContent').on('touchend','.fast-icon-fg', function (e) {
+		e.stopPropagation();			// 停止事件冒泡
 		$('#fastEdit').addClass('show-edit');
 		var fastUrlOld = $(this).prev()[0].href;
 		var fastTitOld = $(this).next()[0].textContent;
@@ -93,6 +98,12 @@ $(document).ready(function () {
 		whFast = $(this).parent().index();
 		$('#setBtn').addClass('set-btn-hidden');
 		$('#toEdit').addClass('to-edit-hidden');
+	})
+	// 删除功能
+	$('#fastContent').on('touchend','.remove-fast-icon', function(e){
+		e.stopPropagation();
+		whFast = $(this).parent().index();
+		removeFast(whFast);
 	})
 })
 
@@ -106,5 +117,10 @@ $(document).on('touchend', function (e) {
 			if ($('.fast-icon-fg').hasClass('fast-icon-edit')) {
 				$('.fast-icon-fg').removeClass('fast-icon-edit');
 			}
+			if($('.remove-fast-icon').hasClass('show-remove-fast-icon')){
+				$('.remove-fast-icon').removeClass('show-remove-fast-icon');
+				saveFastToLocals();
+			}
+			break;
 	}
 })

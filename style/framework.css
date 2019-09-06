@@ -30,7 +30,9 @@ a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-a:active, a:hover, a:visited{
+a:active,
+a:hover,
+a:visited {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-user-select: none;
   -moz-user-focus: none;
@@ -103,7 +105,7 @@ a:active, a:hover, a:visited{
   margin-left: 2vw;
 }
 
-.to-edit-btn{
+.to-edit-btn {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -115,12 +117,12 @@ a:active, a:hover, a:visited{
   z-index: 102;
 }
 
-.to-edit-btn span{
+.to-edit-btn span {
   color: #fff;
   font-size: 6vw;
 }
 
-.to-edit-hidden{
+.to-edit-hidden {
   visibility: hidden;
 }
 
@@ -161,7 +163,8 @@ a:active, a:hover, a:visited{
 }
 
 .fast-icon-link {
-  -webkit-user-select: none;  /*禁用手机浏览器的用户选择功能 */
+  -webkit-user-select: none;
+  /*禁用手机浏览器的用户选择功能 */
   -moz-user-select: none;
   background: url(../static/img/liulanqi.png);
   background-repeat: no-repeat;
@@ -191,6 +194,24 @@ a:active, a:hover, a:visited{
 .fast-icon-edit {
   display: inline-block;
 }
+
+/* 删除按钮 */
+.remove-fast-icon {
+  display: none;
+  position: absolute;
+  width: 5vw;
+  height: 5vw;
+  background-color: rgba(120, 120, 120, 0.678);
+  border-radius: 50%;
+  color: #454545;
+  text-align: center;
+  transform: translate3d(5vw, -1vw, 0);
+}
+
+.show-remove-fast-icon{
+  display: block;
+}
+
 
 .fast-title {
   display: block;

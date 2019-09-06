@@ -21,8 +21,7 @@ function changeSearchE(whSearchE, offset) {
 function addFastBtn(fastIndex) {
 	var fastUrl = $('#editUrl').val();
 	var fastTit = $('#editTit').val();
-	if (fastUrl != '' && fastTit != '') {		// 如果有输入内容，
-		console.log(checkUrl(fastUrl));
+	if (fastUrl != '' && fastTit != '') {		// 如果有输入内容
 		var newElement = '<div class="fast-item bg2">' +
 			"<a href = " + fastUrl +
 			" class= 'fast-icon  fast-icon-link'>" +
@@ -31,6 +30,7 @@ function addFastBtn(fastIndex) {
 			'</span>' +
 			'<span class="fast-title">' + fastTit +
 			'</span>' +
+			'<span class="iconfont icon- remove-fast-icon"></span>' +
 			'</div >\n';
 		if (fastIndex < $('#addFast').index()) {		// 编辑之前的按钮
 			$('#fastContent').children().eq(fastIndex).replaceWith(newElement);
@@ -51,7 +51,18 @@ function addFastBtn(fastIndex) {
 		$('#addFast').css('display', 'none');
 	}
 	$('.fast-icon-fg').removeClass('fast-icon-edit');
+	$('.remove-fast-icon').removeClass('.show-remove-fast-icon');
 	// 每次保存后都将这个 btn 盒子保存到 localstorage 中
+	saveFastToLocals();
+}
+
+// ======== 删除按钮
+function removeFast(fastIndex){
+	$('#fastContent').children().eq(fastIndex).remove();
+}
+
+// ======== 保存当前按钮的盒子
+function saveFastToLocals(){
 	localStorage.setItem("FAST_CONTENT", $('#fastContent').html());
 }
 
