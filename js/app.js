@@ -71,20 +71,17 @@ $(document).ready(function () {
 		$('.fast-icon-fg').removeClass('fast-icon-edit');
 		$('#setBtn').removeClass('set-btn-hidden');
 		$('#toEdit').removeClass('to-edit-hidden');
+		localStorage.setItem("FAST_CONTENT", $('#fastContent').html());
 	})
 
 	// 保存
 	$(document).on('touchend', '#editSave', function () {
 		addFastBtn(whFast);
-		if ($('#fastContent').children().length > 10) {
-			$('#addFast').css('display', 'none');
-		}
-		$('.fast-icon-fg').removeClass('fast-icon-edit');
 	})
 
 	// 点击编辑进入编辑状态
-	$(document).on('touchend', '#toEdit', function(){
-		$('.fast-icon-fg').toggleClass('fast-icon-edit');	
+	$(document).on('touchend', '#toEdit', function () {
+		$('.fast-icon-fg').toggleClass('fast-icon-edit');
 	})
 
 	$('.fast-icon-fg').on('touchend', function () {
@@ -97,4 +94,17 @@ $(document).ready(function () {
 		$('#setBtn').addClass('set-btn-hidden');
 		$('#toEdit').addClass('to-edit-hidden');
 	})
+})
+
+// 点击 arc 或者 fast
+$(document).on('touchend', function (e) {
+	switch (e.target.id) {
+		case 'arc':
+		case 'fast':
+		case 'fastBox':
+		case 'fastContent':
+			if ($('.fast-icon-fg').hasClass('fast-icon-edit')) {
+				$('.fast-icon-fg').removeClass('fast-icon-edit');
+			}
+	}
 })

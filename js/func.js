@@ -17,7 +17,7 @@ function changeSearchE(whSearchE, offset) {
 	$('#searchE_item span').eq(searchENumber).addClass('chose');
 }
 
-// ======== 添加和编辑按钮
+// ======== 保存  添加和编辑的按钮
 function addFastBtn(fastIndex) {
 	var fastUrl = $('#editUrl').val();
 	var fastTit = $('#editTit').val();
@@ -39,7 +39,7 @@ function addFastBtn(fastIndex) {
 		}
 		clearFastInput();
 		$('#setBtn').removeClass('set-btn-hidden');
-		$('#showEdit').removeClass('show-edit-hidden');
+		$('#toEdit').removeClass('to-edit-hidden');
 	}
 	else {																				// 如果没有输入内容，则提示err
 		$('#fastForm p').addClass('input-err');
@@ -47,6 +47,10 @@ function addFastBtn(fastIndex) {
 			$('#fastForm p').removeClass('input-err');
 		})
 	}
+	if ($('#fastContent').children().length > 10) {
+		$('#addFast').css('display', 'none');
+	}
+	$('.fast-icon-fg').removeClass('fast-icon-edit');
 	// 每次保存后都将这个 btn 盒子保存到 localstorage 中
 	localStorage.setItem("FAST_CONTENT", $('#fastContent').html());
 }

@@ -228,7 +228,6 @@ a:active, a:hover, a:visited{
 
 .show-edit {
   display: block;
-  /* visibility: visible; */
   transition-duration: 400ms;
 }
 
