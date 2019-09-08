@@ -50,7 +50,7 @@
 						</div>
 						<div class="fast-btn-content" id="fastContent">
 							<div class="fast-item bg2">
-								<a href="https://www.baidu.com" ontouchstart = "return false" class="fast-icon fast-icon-link"></a>
+								<a href="https://www.baidu.com" ontouchstart="return false" class="fast-icon fast-icon-link"></a>
 								<span class="iconfont icon-ziyuan fast-icon-fg"></span>
 								<span class="fast-title">百度一下</span>
 								<span class="iconfont icon- remove-fast-icon"></span>
@@ -58,7 +58,7 @@
 							<div class="fast-item bg2">
 								<a href="https://www.mi.com" class="fast-icon fast-icon-link"></a>
 								<span class="iconfont icon-ziyuan fast-icon-fg"></span>
-								<span class="fast-title">mi</span>
+								<span class="fast-title">小米商城</span>
 								<span class="iconfont icon- remove-fast-icon"></span>
 							</div>
 							<div class="fast-item bg2" id="addFast">
@@ -101,75 +101,107 @@
 
 		<!-- ======= 工具 ======= -->
 		<div class="tools">
-			<div class="tools-item meal">今天吃什么</div>
-			<div class="tools-item clock">全屏时钟</div>
-			<div class="tools-item translate">翻译</div>
-			<div class="tools-item hexconvert">进制转换</div>
-			<div class="tools-item colorconvert">颜色转换</div>
+			<div class="tools-box">
+				<a href="javascript:" class="tools-item meal">
+					<div class="tools-item-img">
+						<img src="./static/img/yellow.svg" alt="">
+					</div>
+					<div class="tools-item-tit">今天吃什么</div>
+				</a>
+				<a href="javascript:" class="tools-item tools-item-bg-green clock">
+					<div class="tools-item-img">
+						<img src="./static/img/orange.svg" alt="">
+					</div>
+					<div class="tools-item-tit">全屏时钟</div>
+				</a>
+				<a href="javascript:" class="tools-item tools-item-bg-yellow translate">
+					<div class="tools-item-img">
+						<img src="./static/img/blue.svg" alt="">
+					</div>
+					<div class="tools-item-tit">翻译</div>
+				</a>
+				<a href="javascript:" class="tools-item tools-item-bg-red hexconvert">
+					<div class="tools-item-img">
+						<img src="./static/img/purple.svg" alt="">
+					</div>
+					<div class="tools-item-tit">进制转换</div>
+				</a>
+				<a href="javascript:" class="tools-item tools-item-bg-purple colorconvert">
+					<div class="tools-item-img">
+						<img src="./static/img/green.svg" alt="">
+					</div>
+					<div class="tools-item-tit">颜色转换</div>
+				</a>
 		</div>
+		<div class="tools-more">
+			<span class="text-line left"></span>
+			更多小工具，敬请期待……
+			<span class="text-line right"></span>
+		</div>
+	</div>
 
-		<!-- ======= 设置 ======= -->
-		<div class="set" id="set">
-			<div class="set-back" id="setBack">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-			<!-- <div class="empty"></div> -->
-			<div class="set-item head">
-				<div class="head-img">
-					<img src="" alt="">
-				</div>
-				<h2 class="head-name">登录</h2>
-			</div>
-			<div class="set-th"></div>
-			<div class="set-item theme">
-				<h3 class="set-item-tit">
-					<span class="iconfont icon-pifu"></span>
-					主题
-				</h3>
-				<div class="set-chose-box set-chose-small">
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-			</div>
-			<div class="set-item searchE">
-				<h3 class="set-item-tit">
-					<span class="iconfont icon-sousuo"></span>
-					搜索引擎
-				</h3>
-				<div class="set-chose-box set-chose-small" id="searchE_item">
-					<span id="search_baidu" class="chose"></span>
-					<span id="search_google"></span>
-					<span id="search_bing"></span>
-					<span id="search_shenma"></span>
-					<span id="search_sougou"></span>
-				</div>
-			</div>
-			<div class="set-item translateE">
-				<h3 class="set-item-tit">
-					<span class="iconfont icon-translate"></span>
-					翻译引擎
-				</h3>
-				<div class="set-chose-box set-chose-big">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-			</div>
-			<div class="set-th"></div>
-			<div class="set-item agreement">
-				<h3 class="set-item-tit">
-					<span class="iconfont icon-xieyi"></span>
-					服务协议
-				</h3>
-			</div>
-			<div class="empty"></div>
+	<!-- ======= 设置 ======= -->
+	<div class="set" id="set">
+		<div class="set-back" id="setBack">
+			<span></span>
+			<span></span>
+			<span></span>
 		</div>
-		<div class="setBg" id="setBackground"></div>
+		<!-- <div class="empty"></div> -->
+		<div class="set-item head">
+			<div class="head-img">
+				<img src="" alt="">
+			</div>
+			<h2 class="head-name">登录</h2>
+		</div>
+		<div class="set-th"></div>
+		<div class="set-item theme">
+			<h3 class="set-item-tit">
+				<span class="iconfont icon-pifu"></span>
+				主题
+			</h3>
+			<div class="set-chose-box set-chose-small">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		<div class="set-item searchE">
+			<h3 class="set-item-tit">
+				<span class="iconfont icon-sousuo"></span>
+				搜索引擎
+			</h3>
+			<div class="set-chose-box set-chose-small" id="searchE_item">
+				<span id="search_baidu" class="chose"></span>
+				<span id="search_google"></span>
+				<span id="search_bing"></span>
+				<span id="search_shenma"></span>
+				<span id="search_sougou"></span>
+			</div>
+		</div>
+		<div class="set-item translateE">
+			<h3 class="set-item-tit">
+				<span class="iconfont icon-translate"></span>
+				翻译引擎
+			</h3>
+			<div class="set-chose-box set-chose-big">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		<div class="set-th"></div>
+		<div class="set-item agreement">
+			<h3 class="set-item-tit">
+				<span class="iconfont icon-xieyi"></span>
+				服务协议
+			</h3>
+		</div>
+		<div class="empty"></div>
+	</div>
+	<div class="setBg" id="setBackground"></div>
 	</div>
 </body>
 

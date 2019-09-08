@@ -39,10 +39,6 @@ a:visited {
   -moz-user-select: none;
 }
 
-.main {
-  background-color: #fff;
-}
-
 .nav {
   position: relative;
   width: 100vw;
@@ -208,7 +204,7 @@ a:visited {
   transform: translate3d(5vw, -1vw, 0);
 }
 
-.show-remove-fast-icon{
+.show-remove-fast-icon {
   display: block;
 }
 
@@ -418,16 +414,122 @@ a:visited {
 .tools {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   width: 100vw;
-  height: 300vw;
-  background-color: rgb(168, 168, 168);
+  height: var(--origin_vh);
+}
+
+.tools-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: space-around;
+  flex: 9;
+  width: 90vw;
+}
+
+.tools-item:nth-child(3n+2) {
+  margin: 0 7.5vw;
 }
 
 .tools-item {
-  font-size: .32rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: .28rem;
+  color: #fff;
+  width: 25vw;
+  background: linear-gradient(#16d9fe, #5952d5);
+  height: calc(var(--origin_vh) * .35);
+  border-radius: 4vw;
 }
 
+.tools-item::before{
+  position: absolute;
+  display: inline-block;
+  content: "";
+  width: 80%;
+  height:90%;
+  background: inherit;
+  bottom: -1vw;
+  z-index: -1;
+  filter: blur(.3rem) brightness(0.95)
+}
+
+.tools-item-bg-green{
+  background: linear-gradient(#33e3ad, #63bafc);
+}
+.tools-item-bg-yellow{
+  background: linear-gradient(#ffde4c, #ff5a39);
+}
+.tools-item-bg-red{
+  background: linear-gradient(#ff5a34, #fe3172);
+}
+.tools-item-bg-purple{
+  background: linear-gradient(#cc3ffc, #4a56d8);
+}
+
+
+
+
+
+
+
+.tools-item-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 7;
+}
+
+.tools-item-img img{
+  width: 95%;
+}
+
+.tools-item-tit {
+  flex: 3;
+}
+
+
+.tools-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  flex: 1;
+  background-color: #fff;
+  font-size: .22rem;
+}
+
+.text-line {
+  margin: 0 2vw;
+  display: block;
+  width: 20vw;
+  height: .5vw;
+}
+
+.tools-more .left {
+  background: linear-gradient(-90deg, #bbb, #eee)
+}
+
+.tools-more .right {
+  background: linear-gradient(90deg, #bbb, #eee)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ======== 设置板块 ================================ */
 .setBg {
   display: block;
   position: absolute;
