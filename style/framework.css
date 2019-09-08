@@ -39,6 +39,23 @@ a:visited {
   -moz-user-select: none;
 }
 
+.alert {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(50, 50, 50, 0.9);
+  text-align: center;
+  font-size: .4rem;
+  color: #fff;
+  line-height: 100vh;
+  z-index: 10000;
+}
+
+.show-alert{
+  display: block;
+}
+
 .nav {
   position: relative;
   width: 100vw;
@@ -341,7 +358,7 @@ a:visited {
   font-size: .32rem;
 }
 
-.up span{
+.up span {
   color: #454545;
   font-size: .40rem
 }
@@ -455,28 +472,31 @@ a:visited {
   border-radius: 4vw;
 }
 
-.tools-item::before{
+.tools-item::before {
   position: absolute;
   display: inline-block;
   content: "";
   width: 80%;
-  height:90%;
+  height: 90%;
   background: inherit;
   bottom: -1vw;
   z-index: -1;
   filter: blur(.3rem) brightness(0.95)
 }
 
-.tools-item-bg-green{
+.tools-item-bg-green {
   background: linear-gradient(#33e3ad, #63bafc);
 }
-.tools-item-bg-yellow{
+
+.tools-item-bg-yellow {
   background: linear-gradient(#ffde4c, #ff5a39);
 }
-.tools-item-bg-red{
+
+.tools-item-bg-red {
   background: linear-gradient(#ff5a34, #fe3172);
 }
-.tools-item-bg-purple{
+
+.tools-item-bg-purple {
   background: linear-gradient(#cc3ffc, #4a56d8);
 }
 
@@ -493,7 +513,7 @@ a:visited {
   flex: 7;
 }
 
-.tools-item-img img{
+.tools-item-img img {
   width: 95%;
 }
 

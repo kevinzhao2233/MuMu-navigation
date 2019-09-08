@@ -1,0 +1,34 @@
+body,
+div {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	color: #ddd;
+}
+
+.hm {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.8rem;
+}
+
+.s-box {
+  display: flex;
+  align-items: flex-end;
+  height: 1.4rem;
+}
+
+.s {
+  bottom: 0;
+  height: .6rem;
+  line-height: .6rem;
+  font-size: .6rem;
+}

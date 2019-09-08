@@ -9,8 +9,17 @@ var searchE = {
 }
 
 
-
 $(document).ready(function () {
+	// 手机横屏后给出提示
+	window.addEventListener("orientationchange",function(){
+		if(window.orientation != 0){
+			document.addEventListener('touchmove', preventDefault, { passive: false });
+			$('.alert').addClass('show-alert');
+		}else{
+			document.removeEventListener('touchmove', preventDefault, { passive: false });
+			$('.alert').removeClass('show-alert');
+		}
+	})
 
 	// ======== 设置板块
 	$(document).on('touchend', '#setBtn', function () {
