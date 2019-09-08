@@ -88,7 +88,7 @@ $(document).ready(function () {
 	})
 
 	// 编辑功能
-	$('#fastContent').on('touchend','.fast-icon-fg', function (e) {
+	$('#fastContent').on('touchend', '.fast-icon-fg', function (e) {
 		e.stopPropagation();			// 停止事件冒泡
 		$('#fastEdit').addClass('show-edit');
 		var fastUrlOld = $(this).prev()[0].href;
@@ -100,7 +100,7 @@ $(document).ready(function () {
 		$('#toEdit').addClass('to-edit-hidden');
 	})
 	// 删除功能
-	$('#fastContent').on('touchend','.remove-fast-icon', function(e){
+	$('#fastContent').on('touchend', '.remove-fast-icon', function (e) {
 		e.stopPropagation();
 		whFast = $(this).parent().index();
 		removeFast(whFast);
@@ -117,10 +117,11 @@ $(document).on('touchend', function (e) {
 			if ($('.fast-icon-fg').hasClass('fast-icon-edit')) {
 				$('.fast-icon-fg').removeClass('fast-icon-edit');
 			}
-			if($('.remove-fast-icon').hasClass('show-remove-fast-icon')){
+			if ($('.remove-fast-icon').hasClass('show-remove-fast-icon')) {
 				$('.remove-fast-icon').removeClass('show-remove-fast-icon');
 				saveFastToLocals();
 			}
 			break;
 	}
 })
+

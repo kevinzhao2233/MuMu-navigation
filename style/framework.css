@@ -333,10 +333,20 @@ a:visited {
 }
 
 .up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 2;
   text-align: center;
-  font-size: .24rem;
+  font-size: .32rem;
 }
+
+.up span{
+  color: #454545;
+  font-size: .40rem
+}
+
+
 
 .search-fake {
   display: flex;
