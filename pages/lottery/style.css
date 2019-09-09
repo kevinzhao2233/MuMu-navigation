@@ -61,7 +61,6 @@ body {
 	justify-content: center;
   flex: 1;
   width: 100%;
-	background-color: rgba(244, 244, 244, .3);
 	overflow: hidden;
 }
 
@@ -71,16 +70,16 @@ body {
   width: 90vh;
   height: 90vh;
 	border-radius: 50%;
-  transform: rotate(20deg);
+  transform: rotate(0deg);
 }
 
 .card {
-  /* margin-top: .8vh; */
   position: absolute;
   width: 16vh;
-  height: 20vh;
+  height: 24vh;
   background-color: #fff;
-  transform-origin: 50% 45vh 0;
+	transform-origin: 50% 45vh 0;
+	border-radius: 2vh;
 }
 
 .bg-red {
@@ -181,13 +180,6 @@ body {
 
 
 
-
-
-
-
-
-
-
 .btn {
   position: absolute;
   bottom: -15vw;
@@ -202,5 +194,4 @@ body {
   text-align: center;
   text-shadow: .02rem .02rem .03rem rgba(144, 144, 144, .8);
   font-weight: 600;
-  box-shadow: 0 0 .1rem #666;
 }
