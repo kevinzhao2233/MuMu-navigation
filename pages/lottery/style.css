@@ -12,15 +12,12 @@ h1 {
 :root {
   /* --origin_vh: 100vh; */
   --selected_bg: #FF6D00;
-  --rotate: 0deg;
+  --rotate: 180deg;
+  --rotate_end_time: 1s;
 }
 
 @keyframes start {
-  0% {
-    transform: rotate(0deg)
-  }
-
-  100% {
+  to {
     transform: rotate(360deg);
   }
 }
@@ -97,6 +94,7 @@ body {
   transform: rotate(0deg);
 }
 
+
 .rotate-start {
   animation: start 1s ease-in forwards;
 }
@@ -106,7 +104,7 @@ body {
 }
 
 .rotate-end {
-  animation: end 1s ease-out forwards;
+  animation: end var(--rotate_end_time) ease-out forwards;
 }
 
 .card {
@@ -205,6 +203,11 @@ body {
 .bg-gray {
   transform: rotate(340deg);
   background-color: #607D8B;
+}
+
+.choice-item{
+  z-index: 100;
+  border: .06rem solid rgba(255, 255, 255, .8)
 }
 
 
