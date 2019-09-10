@@ -12,7 +12,31 @@ h1 {
 :root {
   /* --origin_vh: 100vh; */
   --selected_bg: #FF6D00;
+  --rotate: 0deg;
 }
+
+@keyframes start {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes run {
+  to {
+    transform: rotate(1800deg);
+  }
+}
+
+@keyframes end {
+  to {
+    transform: rotate(calc(360deg + var(--rotate)))
+  }
+}
+
 
 body {
   width: 100%;
@@ -51,17 +75,17 @@ body {
 
 .tit {
   flex: 1;
-  font-size: .78rem;
+  font-size: .72rem;
   letter-spacing: .04rem;
-	line-height: 5rem;
+  line-height: 5rem;
 }
 
 .rotate-box {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
   flex: 1;
   width: 100%;
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .rotate {
@@ -69,8 +93,20 @@ body {
   justify-content: center;
   width: 90vh;
   height: 90vh;
-	border-radius: 50%;
+  border-radius: 50%;
   transform: rotate(0deg);
+}
+
+.rotate-start {
+  animation: start 1s ease-in forwards;
+}
+
+.rotate-run {
+  animation: run 3s linear forwards;
+}
+
+.rotate-end {
+  animation: end 1s ease-out forwards;
 }
 
 .card {
@@ -78,8 +114,8 @@ body {
   width: 16vh;
   height: 24vh;
   background-color: #fff;
-	transform-origin: 50% 45vh 0;
-	border-radius: 2vh;
+  transform-origin: 50% 45vh 0;
+  border-radius: 2vh;
 }
 
 .bg-red {
@@ -187,6 +223,7 @@ body {
   height: 30vw;
   border-radius: 50%;
   border: none;
+  outline: none;
   background-color: #fff;
   color: #666;
   font-size: .6rem;
