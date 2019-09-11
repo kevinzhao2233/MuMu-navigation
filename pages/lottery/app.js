@@ -4,7 +4,6 @@ var choice_item;
 // ======== 禁止页面滚动
 document.addEventListener('touchmove', preventDefault, { passive: false });
 
-
 $(document).ready(function () {
 	$(document).on('touchend', function (ev) {
 		console.log(ev.target.id);
@@ -48,8 +47,18 @@ $(document).ready(function () {
 				$('#start').trigger('touchend');
 				break;
 		}
-
 	})
+})
+
+$(document).on('touchend', '.other-content', function () {
+	$('.box-edit').css('flex', '0');
+	$('.edit-content-tit').addClass('no-display');
+	$('.other-content').addClass('other-content-act');
+	$('.other-content-tit').addClass('other-content-tit-act');
+	$('.other-content-body').removeClass('no-display');
+	setTimeout(function () {
+		$('.other-content-body').removeClass('hidden');
+	}, 300)
 })
 
 

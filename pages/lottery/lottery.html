@@ -17,11 +17,32 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>今天吃什么</title>
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../../static/icon/iconfont.css">
 </head>
 
 <body>
 	<div class="main selected">
-		<h1 class="tit">今天吃什么呢?</h1>
+		<div class="head">
+			<h1 class="tit">今天吃什么呢?</h1>
+			<div class="head-box">
+				<div class="box box-other">
+					<div class="box-content other-content">
+						<h3 class="other-content-tit">其他转盘</h3>
+						<div class="other-content-body hidden no-display">
+							<div class="other-item">今天吃什么<span class="iconfont icon-quxiao"></span></div>
+							<div class="other-item">今天谁带饭<span class="iconfont icon-quxiao"></span></div>
+							<div class="other-item">今天谁倒垃圾<span class="iconfont icon-quxiao"></span></div>
+							<div class="other-item">这回谁喝酒<span class="iconfont icon-quxiao"></span></div>
+						</div>
+					</div>
+				</div>
+				<div class="box box-edit">
+					<div class="box-content edit-content">
+						<h3 class="edit-content-tit">编辑当前转盘</h3>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="rotate-box">
 			<div class="rotate" id="rotate">
 				<div class="card bg-red">烧茄子焖饭</div>
