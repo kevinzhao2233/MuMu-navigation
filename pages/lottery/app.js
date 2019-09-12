@@ -2,7 +2,7 @@ var choice;					// 随机产生的项
 var choiceItem; 		// 被抽中的块
 var editItemIndex; 	// 选中的转盘，用来确定是要删除或编辑哪个转盘
 var oTempTurn = {				// 一个转盘
-	title: '爱你',
+	title: 'tit',
 	item: ['1', '2']
 }
 var oTurn = [];
@@ -70,7 +70,7 @@ $(document).on('touchend', '.other-content', function () {
 })
 
 // 选中某一个转盘
-$('#otherItemBox').on('touchend', '.other-item', function () {
+$('#otherItemBox').bind('touchend', '.other-item', function (ev) {
 	editItemIndex = $(this).index();
 	$('.other-item').removeClass('other-item-act');
 	// 如果不是添加按钮
@@ -86,15 +86,27 @@ $('#otherItemBox').on('touchend', '.other-item', function () {
 		$('#itemDetail, #controlBox, #controlComplate, #controlCancel').removeClass('no-display');
 	}
 })
-// 添加项
+
+// 添加转盘
 $(document).on('touchend', '#addItem', function () {
 	$('#addItem').before('<div class="other-item"><input placeholder="添加项" type="text"><span class="iconfont icon-quxiao"></span></div>')
 })
-// 删除项, 弹窗保护
-$(document).on('touchend', '.remove-item', function () {
-	// $('#warning').removeClass('no-display');
-	
+
+// 删除转盘, 弹窗保护
+$(document).on('touchend', '.remove-item', function (ev) {
+	ev.stopPropagation()
+	if(confirm('你将要删除这个转盘')){
+		$(this).parent().remove()
+	}else{
+		console.log('手滑了');
+	}
+	// 解决阻止冒泡失效的问题，或许是鼠标手指太大了
+	$(this).removeClass('other-item-act')
+	$('#controlBox').addClass('no-display');
+	$('#controlComplate, #controlCancel').removeClass('no-display');
 })
+
+// 添加完后保存或取消
 $('#controlBox').on('touchend', function (ev) {
 	switch (ev.target.id) {
 		case 'controlComplate':			// 点击完成
@@ -106,9 +118,7 @@ $('#controlBox').on('touchend', function (ev) {
 			localStorage.setItem('TURN', JSON.stringify(oTurn));
 			$('#otherItemBox, #controlUse, #controlEdit').removeClass('no-display');
 			$('#itemDetail, #controlBox').addClass('no-display');
-			$('#addTurn').before('<div class="other-item">' +
-				oTempTurn.title +
-				'<span class="iconfont icon-quxiao"></span></div>');
+			$('#addTurn').before('<div class="other-item"><i>' + oTempTurn.title + '</i><span class="iconfont icon-quxiao"></span></div>');
 			break;
 		case 'controlCancel':
 			// 直接退出，回到进入的地方

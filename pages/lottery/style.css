@@ -10,6 +10,10 @@ h3 {
   padding: 0;
 }
 
+i{
+  font-style: normal;
+}
+
 input {
   outline: none;
   box-sizing: border-box;
@@ -114,7 +118,7 @@ body {
 }
 
 .box-edit {
-  flex: 1;
+  flex: 0;
   /*!@#$%^&*!@#$%^&*!@#$%^&*()*/
 }
 
