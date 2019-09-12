@@ -4,9 +4,16 @@ div,
 button,
 span,
 p,
-h1 {
+h1,
+h3 {
   margin: 0;
   padding: 0;
+}
+
+input {
+  outline: none;
+  box-sizing: border-box;
+  border: none;
 }
 
 :root {
@@ -107,7 +114,8 @@ body {
 }
 
 .box-edit {
-  flex: 1;/*!@#$%^&*!@#$%^&*!@#$%^&*()*/
+  flex: 1;
+  /*!@#$%^&*!@#$%^&*!@#$%^&*()*/
 }
 
 .box-content {
@@ -133,31 +141,41 @@ body {
   transition: all 300ms;
 }
 
-.other-content-act{
+.other-content-act {
   padding: .1rem .2rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.other-content-tit-act{
+.other-content-tit-act {
   margin: 0;
-  font-size: .26rem;
+  font-size: .28rem;
   letter-spacing: .01rem;
   text-align: start;
   font-weight: normal;
 }
 
-.other-content-body{
+.other-content-body {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  overflow: auto;
   margin-top: .2rem;
-  display: flex;
-  flex-wrap: wrap;
   visibility: visible;
   transition: all 300ms;
 }
 
-.hidden{
+.hidden {
   visibility: hidden;
 }
 
-.other-item{
+.other-item-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.other-item {
   font-size: .26rem;
   margin: .06rem;
   padding: .04rem .06rem .04rem .1rem;
@@ -166,11 +184,97 @@ body {
   background-color: rgba(255, 255, 255, .5);
 }
 
-.other-item span{
+.other-item span {
   margin: 0 0 0 .1rem;
   background-color: rgba(255, 255, 255, .6);
   border-radius: 50%;
 }
+
+.other-item-act {
+  border-color: #ff6d00;
+  background-color: rgba(255, 255, 255, .8);
+}
+
+.add-item {
+  padding: 0;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.add-item span {
+  display: block;
+  margin: 0;
+  background-color: rgba(255, 255, 255, .6);
+  transform: rotate(45deg);
+  font-size: .40rem;
+  color: #ff6d00;
+}
+
+.item-detail-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.item-detail-tit {
+  margin: 0 0 .06rem .1rem;
+  padding: 0 .16rem;
+  border-radius: 1rem;
+  width: 3rem;
+  height: .38rem;
+}
+
+.line-br {
+  width: 100%;
+  height: 1px;
+}
+
+.item-detail-form .other-item {
+  padding: 0 .06rem
+}
+
+.item-detail-form .other-item input {
+  margin: 0;
+  padding: 0 .16rem;
+  height: .34rem;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  width: 1.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.other-content-foot {
+  font-size: .28rem;
+}
+
+.control-box {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.control {
+  margin: 0 .2rem;
+  padding: .04rem .4rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  border: 1px solid #ff6d00;
+}
+
+
+
 
 
 
@@ -186,7 +290,7 @@ body {
   background-position: 0 .7rem;
 }
 
-.edit-content-tit{
+.edit-content-tit {
   margin: 1rem 0;
   font-size: .4rem;
   letter-spacing: .02rem;
@@ -201,11 +305,53 @@ body {
 
 
 
+/* ======== 弹窗 */
+.warning {
+  position: absolute;
+  margin: 0 auto;
+  top: 0;
+  width: 100%;
+  height: 1.8rem;
+  background-color: #fff;
+  border-radius: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: .28rem;
+}
+
+.warning h3{
+  flex: 1;
+  margin: .2rem 0;
+}
+
+.warn-control{
+  width: 100%;
+  border-top: 1px solid #bac8e0;
+  height: .72rem;
+  display: flex;
+  
+}
+
+.warn-control div{
+  width: 50%;
+  text-align: center;
+}
+
+.warn-control-l{
+  border-right: 1px solid #bac8e0;
+}
+
+.warn-btn{
+  padding: 0 .5rem;
+  line-height: .72rem;
+}
 
 
 
-
+/* ======== 下方转盘部分 */
 .rotate-box {
+  display: inline-block;
   display: flex;
   justify-content: center;
   flex: 1;

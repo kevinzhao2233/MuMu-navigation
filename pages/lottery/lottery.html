@@ -27,12 +27,51 @@
 			<div class="head-box">
 				<div class="box box-other">
 					<div class="box-content other-content">
-						<h3 class="other-content-tit">其他转盘</h3>
-						<div class="other-content-body hidden no-display">
-							<div class="other-item">今天吃什么<span class="iconfont icon-quxiao"></span></div>
-							<div class="other-item">今天谁带饭<span class="iconfont icon-quxiao"></span></div>
-							<div class="other-item">今天谁倒垃圾<span class="iconfont icon-quxiao"></span></div>
-							<div class="other-item">这回谁喝酒<span class="iconfont icon-quxiao"></span></div>
+						<h3 class="other-content-tit" id="otherTit">其他转盘</h3>
+						<div class="other-content-body no-display">
+							<div class="other-item-box" id="otherItemBox">
+								<div class="other-item">今天吃什么<span class="iconfont icon-quxiao remove-item"></span></div>
+								<div class="other-item">今天谁带饭<span class="iconfont icon-quxiao remove-item"></span></div>
+								<div class="other-item">今天谁倒垃圾<span class="iconfont icon-quxiao remove-item"></span></div>
+								<div class="other-item">这回谁喝酒<span class="iconfont icon-quxiao remove-item"></span></div>
+								<div class="other-item add-item" id="addTurn"><span class="iconfont icon-quxiao"></span></div>
+							</div>
+							<div class="item-detail no-display" id="itemDetail">
+								<form action="" class="item-detail-form" id="itemDetailForm">
+									<input placeholder="在这里输入标题" type="text" name="" class="item-detail-tit" id="itemDetailTit">
+									<span class="line-br"></span>
+									<div class="other-item">
+										<input placeholder="添加项" type="text"><span class="iconfont icon-quxiao remove-item"></span>
+									</div>
+									<div class="other-item">
+										<input placeholder="添加项" type="text"><span class="iconfont icon-quxiao remove-item"></span>
+									</div>
+									<div class="other-item">
+										<input placeholder="添加项" type="text"><span class="iconfont icon-quxiao remove-item"></span>
+									</div>
+									<div class="other-item add-item" id="addItem"><span class="iconfont icon-quxiao"></span></div>
+								</form>
+							</div>
+							<!-- 删除时确认弹窗 -->
+							<div class="warning no-display" id="warning">
+								<h3>确认删除？</h3>
+								<div class="warn-control">
+									<div class="warn-control-l">
+										<span class="warn-btn" id="warnEnter">确认</span>
+									</div>
+									<div class="warn-control-r">
+										<span class="warn-btn" id="warnCancel">取消</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="other-content-foot">
+							<div class="control-box no-display" id="controlBox">
+								<div class="control control-use" id="controlUse">开始</div>
+								<div class="control control-edit" id="controlEdit">编辑</div>
+								<div class="control control-complate" id="controlComplate">完成</div>
+								<div class="control control-cancel" id="controlCancel">取消</div>
+							</div>
 						</div>
 					</div>
 				</div>
