@@ -1,9 +1,10 @@
 var choice;					// 随机产生的项
 var choiceItem; 		// 被抽中的块
 var editItemIndex; 	// 选中的转盘，用来确定是要删除或编辑哪个转盘
+var isNewTurn = 0;
 var oTempTurn = {				// 一个转盘
-	title: 'tit',
-	item: ['1', '2']
+	title: '',
+	item: []
 }
 var oTurn = [];
 
@@ -11,6 +12,19 @@ var oTurn = [];
 document.addEventListener('touchmove', preventDefault, { passive: false });
 
 $(document).ready(function () {
+
+	// ======== 初始化所有转盘，向 localstorage 中写入测试数据，---- 只在测试中使用
+	var initData = [{
+		title: '今天吃什么呢？',
+		item: ['脆皮鸡盖饭', '大肉面片', '臊子干拌', '酸菜肉丝面', '豆干肉', '牛肉面']
+	}, {
+		title: '今天谁带饭？',
+		item: ['张飞', '吕布', '曹操']
+	}, {
+		title: '这回谁喝酒？',
+		item: ['杨贵妃', '蜘蛛侠', '唐僧', '猪猪侠', '哪吒', '吴京', '蔡徐坤', 'JackSparrow']
+	}]
+	localStorage.setItem('TURN', JSON.stringify(initData));
 
 	// 转盘模块
 	$(document).on('touchend', function (ev) {
@@ -70,17 +84,20 @@ $(document).on('touchend', '.other-content', function () {
 })
 
 // 选中某一个转盘
-$('#otherItemBox').bind('touchend', '.other-item', function (ev) {
+$('#otherItemBox').bind('touchend', '.other-item', function () {
 	editItemIndex = $(this).index();
+	console.log('editItemIndex = ' + editItemIndex);
 	$('.other-item').removeClass('other-item-act');
 	// 如果不是添加按钮
 	if ($(this).index() < $(this).parent().children().length - 1) {
+		isNewTurn = 2;
 		$(this).addClass('other-item-act')
 		$('#controlBox').removeClass('no-display');
 		$('#controlComplate, #controlCancel').addClass('no-display');
 	}
 	// 如果是添加按钮
 	if ($(this).index() == $(this).parent().children().length - 1) {
+		isNewTurn = 1;
 		$('#otherTit').html("添加新的转盘");
 		$('#otherItemBox, #controlUse, #controlEdit').addClass('no-display');
 		$('#itemDetail, #controlBox, #controlComplate, #controlCancel').removeClass('no-display');
@@ -95,18 +112,19 @@ $(document).on('touchend', '#addItem', function () {
 // 删除转盘, 弹窗保护
 $(document).on('touchend', '.remove-item', function (ev) {
 	ev.stopPropagation()
-	if(confirm('你将要删除这个转盘')){
+	if (confirm('你将要删除这个转盘')) {
 		$(this).parent().remove()
-	}else{
+	} else {
 		console.log('手滑了');
 	}
+	// TODO: 将删除后的转盘也从locolstorage中删除
 	// 解决阻止冒泡失效的问题，或许是鼠标手指太大了
-	$(this).removeClass('other-item-act')
+	$(this).parent().removeClass('other-item-act')
 	$('#controlBox').addClass('no-display');
 	$('#controlComplate, #controlCancel').removeClass('no-display');
 })
 
-// 添加完后保存或取消
+// 添加或修改完后保存或取消
 $('#controlBox').on('touchend', function (ev) {
 	switch (ev.target.id) {
 		case 'controlComplate':			// 点击完成
@@ -114,16 +132,25 @@ $('#controlBox').on('touchend', function (ev) {
 			$('#itemDetailForm input').each(function (index) {		// 遍历，保存信息
 				oTempTurn.item[index - 1] = $(this).val();
 			})
-			oTurn.push(oTempTurn);
+			// 判断是编辑以前的，还是添加新的；
+			if (isNewTurn == 1) {			// 如果是添加新的
+				oTurn.push(oTempTurn);
+				$('#addTurn').before('<div class="other-item"><i>' + oTempTurn.title + '</i><span class="iconfont icon-quxiao"></span></div>');
+			}
+			if (isNewTurn == 2) {
+				oTurn.splice(editItemIndex, 1, oTempTurn);
+			}
 			localStorage.setItem('TURN', JSON.stringify(oTurn));
+			$('#otherItemBox').children().eq(editItemIndex).html('<i>' + oTempTurn.title + '</i><span class="iconfont icon-quxiao remove-item"></span>');
 			$('#otherItemBox, #controlUse, #controlEdit').removeClass('no-display');
 			$('#itemDetail, #controlBox').addClass('no-display');
-			$('#addTurn').before('<div class="other-item"><i>' + oTempTurn.title + '</i><span class="iconfont icon-quxiao"></span></div>');
 			break;
-		case 'controlCancel':
+		case 'controlCancel':					// 点击取消
 			// 直接退出，回到进入的地方
 			$('#otherItemBox, #controlUse, #controlEdit').removeClass('no-display');
 			$('#itemDetail, #controlBox').addClass('no-display');
+			$('.other-item').removeClass('other-item-act');
+			$('#otherTit').html('其他转盘');
 			break;
 	}
 })
@@ -137,8 +164,23 @@ $(document).on('touchend', '#controlUse', function () {
 
 // 选中转盘后，编辑转盘
 $(document).on('touchend', '#controlEdit', function () {
-	$('#otherTit').html($('#otherItemBox').children().eq(editItemIndex)[0].textContent)
-
+	$('#otherTit').html('编辑转盘');
+	$('#otherItemBox, #controlUse, #controlEdit').addClass('no-display');
+	$('#itemDetail, #controlComplate, #controlCancel').removeClass('no-display');
+	// 获取localStorage 中的信息，填写到表单中，改写后的由 点击“完成” 来控制
+	var tempStr = localStorage.getItem('TURN');
+	oTempTurn = JSON.parse(tempStr)[editItemIndex];
+	console.log('oTempTurn:' + oTempTurn);
+	for (var i = 0, len = oTempTurn.item.length; i < len; i++) {
+		if (i > 2) {
+			$('#addItem').trigger('touchend');
+		}
+	}
+	console.log('len = ' + len);
+	$('#itemDetailForm input').each(function (index) {
+		$(this).val(oTempTurn.item[index - 1])
+	})
+	$('#itemDetailTit').val($('#otherItemBox').children().eq(editItemIndex)[0].textContent);
 })
 
 
