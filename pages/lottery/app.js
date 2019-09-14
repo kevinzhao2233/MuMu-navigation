@@ -1,10 +1,9 @@
 var choice;					// 随机产生的项
 var choiceItem; 		// 被抽中的块
 var editItemIndex; 	// 选中的转盘，用来确定是要删除或编辑哪个转盘
-var isNewTurn = 0;
 var oTempTurn = {				// 一个转盘
-	title: '',
-	item: []
+	title: 'tit',
+	item: ['1', '2']
 }
 var oTurn = [];
 
