@@ -1,9 +1,10 @@
 var choice;					// 随机产生的项
 var choiceItem; 		// 被抽中的块
 var editItemIndex; 	// 选中的转盘，用来确定是要删除或编辑哪个转盘
+var isNewTurn = 0;
 var oTempTurn = {				// 一个转盘
 	title: 'tit',
-	item: ['1', '2']
+	item: ['item', 'item', 'item']
 }
 var oTurn = [];
 
@@ -18,12 +19,15 @@ $(document).ready(function () {
 		item: ['脆皮鸡盖饭', '大肉面片', '臊子干拌', '酸菜肉丝面', '豆干肉', '牛肉面']
 	}, {
 		title: '今天谁带饭？',
-		item: ['张飞', '吕布', '曹操']
+		item: ['张飞', '吕布', '曹操', 'kevin']
 	}, {
 		title: '这回谁喝酒？',
-		item: ['杨贵妃', '蜘蛛侠', '唐僧', '猪猪侠', '哪吒', '吴京', '蔡徐坤', 'JackSparrow']
+		item: ['杨贵妃', '蜘蛛侠', '唐僧', '猪猪侠', '哪吒', '吴京', '蔡徐坤', 'JackSparrow', '汤姆']
 	}]
 	localStorage.setItem('TURN', JSON.stringify(initData));
+
+	// TODO: 这个 oTurn 需要从 localstorage 中获取
+	oTurn = initData.concat();
 
 	// 转盘模块
 	$(document).on('touchend', function (ev) {
@@ -103,7 +107,7 @@ $('#otherItemBox').bind('touchend', '.other-item', function () {
 	}
 })
 
-// 添加转盘
+// 添加项
 $(document).on('touchend', '#addItem', function () {
 	$('#addItem').before('<div class="other-item"><input placeholder="添加项" type="text"><span class="iconfont icon-quxiao"></span></div>')
 })
@@ -132,7 +136,7 @@ $('#controlBox').on('touchend', function (ev) {
 				oTempTurn.item[index - 1] = $(this).val();
 			})
 			// 判断是编辑以前的，还是添加新的；
-			if (isNewTurn == 1) {			// 如果是添加新的
+			if (isNewTurn == 1) {
 				oTurn.push(oTempTurn);
 				$('#addTurn').before('<div class="other-item"><i>' + oTempTurn.title + '</i><span class="iconfont icon-quxiao"></span></div>');
 			}
@@ -152,6 +156,10 @@ $('#controlBox').on('touchend', function (ev) {
 			$('#otherTit').html('其他转盘');
 			break;
 	}
+	// XXX: 这里可能需要改进，但这个方法应该还是性能上比较优的方案
+	if ($('#itemDetailForm .other-item').length - 1 > 3) {
+		$('#itemDetailForm').html('<form action="" class="item-detail-form" id="itemDetailForm"><input placeholder="在这里输入标题" type="text" name="" class="item-detail-tit" id="itemDetailTit"><span class="line-br"></span><div class="other-item"><input placeholder="添加项" type="text"><span class="iconfont icon-quxiao remove-item"></span></div><div class="other-item"><input placeholder="添加项" type="text"><span class="iconfont icon-quxiao remove-item"></span></div><div class="other-item"><input placeholder="添加项" type="text"><span class="iconfont icon-quxiao remove-item"></span></div><div class="other-item add-item" id="addItem"><span class="iconfont icon-quxiao"></span></div></form>')
+	}
 })
 
 // 选中转盘后，开始，给下方的转盘填充数据
@@ -166,21 +174,22 @@ $(document).on('touchend', '#controlEdit', function () {
 	$('#otherTit').html('编辑转盘');
 	$('#otherItemBox, #controlUse, #controlEdit').addClass('no-display');
 	$('#itemDetail, #controlComplate, #controlCancel').removeClass('no-display');
+
 	// 获取localStorage 中的信息，填写到表单中，改写后的由 点击“完成” 来控制
 	var tempStr = localStorage.getItem('TURN');
 	oTempTurn = JSON.parse(tempStr)[editItemIndex];
-	console.log('oTempTurn:' + oTempTurn);
-	for (var i = 0, len = oTempTurn.item.length; i < len; i++) {
-		if (i > 2) {
-			$('#addItem').trigger('touchend');
-		}
+	var turnLen = oTempTurn.item.length;
+	while ($('#itemDetailForm .other-item').length - 1 < turnLen) {
+		$('#addItem').trigger('touchend');
 	}
-	console.log('len = ' + len);
+
 	$('#itemDetailForm input').each(function (index) {
 		$(this).val(oTempTurn.item[index - 1])
 	})
 	$('#itemDetailTit').val($('#otherItemBox').children().eq(editItemIndex)[0].textContent);
 })
+
+
 
 
 
