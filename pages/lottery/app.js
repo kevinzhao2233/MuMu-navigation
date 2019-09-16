@@ -13,7 +13,7 @@ document.addEventListener('touchmove', preventDefault, { passive: false });
 
 $(document).ready(function () {
 
-	// ======== 初始化所有转盘，向 localstorage 中写入测试数据，---- 只在测试中使用
+	// ======== 初始化所有转盘
 	var initData = [{
 		title: '今天吃什么呢？',
 		item: ['脆皮鸡盖饭', '大肉面片', '臊子干拌', '酸菜肉丝面', '豆干肉', '牛肉面']
@@ -24,13 +24,36 @@ $(document).ready(function () {
 		title: '这回谁喝酒？',
 		item: ['杨贵妃', '蜘蛛侠', '唐僧', '猪猪侠', '哪吒', '吴京', '蔡徐坤', 'JackSparrow', '汤姆']
 	}]
-	localStorage.setItem('TURN', JSON.stringify(initData));
 
-	// TODO: 这个 oTurn 需要从 localstorage 中获取
-	oTurn = initData.concat();
+	oTurn = JSON.parse(localStorage.getItem('TURN'));
+	if (oTurn) {
+		console.log('localstorage中有');
+	} else {
+		oTurn = initData.concat();
+		localStorage.setItem('TURN', JSON.stringify(oTurn));
+	}
 
-	// 转盘模块
+	// 初始化其他转盘页面的转盘标题
+	for (var initIndex = 0, initLen = oTurn.length; initIndex < initLen; initIndex++) {
+		$('#otherItemBox i').eq(initIndex).html(oTurn[initIndex].title);
+	}
+
+	// 初始化页面标题和下方转盘
+	editItemIndex = 0;
+	$('.tit').html(oTurn[editItemIndex].title);
+	$('.card').html('谢谢参与');
+	cycle = Math.trunc(18 / oTurn[editItemIndex].item.length);
+	for (var i = 0; i < cycle; i++) {
+		r = 0;
+		for (var j = i * oTurn[editItemIndex].item.length; j < (i + 1) * oTurn[editItemIndex].item.length; j++) {
+			$('.card').eq(j).html(oTurn[editItemIndex].item[r]);
+			r++;
+		}
+	}
+
+	// 页面下方转盘模块
 	$(document).on('touchend', function (ev) {
+		console.log(ev.target);
 		switch (ev.target.id) {
 			case "start":
 				$('#ban').removeClass('no-display');
@@ -65,7 +88,7 @@ $(document).ready(function () {
 				break;
 			case "restart":
 				$('#rotate').removeClass('rotate-end');
-				$('.tit').html('这不好吃，\n再来');
+				$('.tit').html('不行，再来');
 				$('#rotate').children().eq(-1 * choice).removeClass('choice-item');
 				$('#ban').addClass('no-display');
 				$('#start').trigger('touchend');
@@ -89,7 +112,6 @@ $(document).on('touchend', '.other-content', function () {
 // 选中某一个转盘
 $('#otherItemBox').bind('touchend', '.other-item', function () {
 	editItemIndex = $(this).index();
-	console.log('editItemIndex = ' + editItemIndex);
 	$('.other-item').removeClass('other-item-act');
 	// 如果不是添加按钮
 	if ($(this).index() < $(this).parent().children().length - 1) {
@@ -107,24 +129,33 @@ $('#otherItemBox').bind('touchend', '.other-item', function () {
 	}
 })
 
-// 添加项
+// 添加某个转盘中的项
 $(document).on('touchend', '#addItem', function () {
-	$('#addItem').before('<div class="other-item"><input placeholder="添加项" type="text"><span class="iconfont icon-quxiao"></span></div>')
+	if ($('#itemDetailForm .other-item').length - 1 < 18) {
+		$('#addItem').before('<div class="other-item"><input placeholder="添加项" type="text"><span class="iconfont icon-quxiao remove-item"></span></div>')
+	} else {
+		alert('最多只能添加18个项哦');
+	}
 })
 
-// 删除转盘, 弹窗保护
+// 删除转盘或项, 删除转盘会有弹窗保护
 $(document).on('touchend', '.remove-item', function (ev) {
 	ev.stopPropagation()
-	if (confirm('你将要删除这个转盘')) {
-		$(this).parent().remove()
+	if ($(this).parent().parent()[0].id == 'otherItemBox') {
+		if (confirm('你将要删除这个转盘')) {
+			$(this).parent().remove()
+		} else {
+			console.log('手滑了');
+		}
+		$(this).parent().removeClass('other-item-act')
+		$('#controlBox').addClass('no-display');
+		$('#controlComplate, #controlCancel').removeClass('no-display');
+	} else if ($(this).parent().parent()[0].id == 'itemDetailForm') {
+		$(this).parent().remove();
 	} else {
-		console.log('手滑了');
+		console.log('出错了吗')
 	}
-	// TODO: 将删除后的转盘也从locolstorage中删除
-	// 解决阻止冒泡失效的问题，或许是鼠标手指太大了
-	$(this).parent().removeClass('other-item-act')
-	$('#controlBox').addClass('no-display');
-	$('#controlComplate, #controlCancel').removeClass('no-display');
+	// 删除后在‘保存’的时候才会更改 localstorage 中的内容
 })
 
 // 添加或修改完后保存或取消
@@ -138,7 +169,7 @@ $('#controlBox').on('touchend', function (ev) {
 			// 判断是编辑以前的，还是添加新的；
 			if (isNewTurn == 1) {
 				oTurn.push(oTempTurn);
-				$('#addTurn').before('<div class="other-item"><i>' + oTempTurn.title + '</i><span class="iconfont icon-quxiao"></span></div>');
+				$('#addTurn').before('<div class="other-item"><i>' + oTempTurn.title + '</i><span class="iconfont icon-quxiao remove-item"></span></div>');
 			}
 			if (isNewTurn == 2) {
 				oTurn.splice(editItemIndex, 1, oTempTurn);
@@ -164,13 +195,36 @@ $('#controlBox').on('touchend', function (ev) {
 
 // 选中转盘后，开始，给下方的转盘填充数据
 $(document).on('touchend', '#controlUse', function () {
+	var cycle;
+	var r;
 	$('.other-item').removeClass('other-item-act')
 	$('#controlBox').addClass('no-display');
-	// TODO: 这里需要将转盘填满数据，并回到初始界面的样式
+	$('.tit').html(oTurn[editItemIndex].title);
+	$('.card').html('谢谢参与');
+	cycle = Math.trunc(18 / oTurn[editItemIndex].item.length);
+	for (var i = 0; i < cycle; i++) {
+		r = 0;
+		for (var j = i * oTurn[editItemIndex].item.length; j < (i + 1) * oTurn[editItemIndex].item.length; j++) {
+			$('.card').eq(j).html(oTurn[editItemIndex].item[r]);
+			r++;
+		}
+	}
+	// 数据操作已经完成，回到初始界面的样式
+	$('.other-content-body').addClass('hidden');
+	setTimeout(function () {
+		$('.other-content-body').addClass('no-display');	
+		$('.edit-content-tit').removeClass('no-display');
+		$('.other-content').removeClass('other-content-act');
+		$('.other-content-tit').removeClass('other-content-tit-act');
+		$('.box-edit').css('flex', '1');
+	}, 300)
 })
+
 
 // 选中转盘后，编辑转盘
 $(document).on('touchend', '#controlEdit', function () {
+	var tempStr;				// 从 localstorage 中获取的 string 类型的所有转盘
+	var turnLen;				// 每一个转盘的 item 的长度
 	$('#otherTit').html('编辑转盘');
 	$('#otherItemBox, #controlUse, #controlEdit').addClass('no-display');
 	$('#itemDetail, #controlComplate, #controlCancel').removeClass('no-display');
@@ -179,10 +233,11 @@ $(document).on('touchend', '#controlEdit', function () {
 	var tempStr = localStorage.getItem('TURN');
 	oTempTurn = JSON.parse(tempStr)[editItemIndex];
 	var turnLen = oTempTurn.item.length;
+	// 遍历增加空的input
 	while ($('#itemDetailForm .other-item').length - 1 < turnLen) {
 		$('#addItem').trigger('touchend');
 	}
-
+	// 遍历将数据填入input
 	$('#itemDetailForm input').each(function (index) {
 		$(this).val(oTempTurn.item[index - 1])
 	})
