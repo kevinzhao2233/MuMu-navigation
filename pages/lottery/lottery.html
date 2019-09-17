@@ -30,7 +30,7 @@
 						<!---->
 						<h3 class="other-content-tit" id="otherTit">其他转盘</h3>
 						<!---->
-						<div class="other-content-body no-display">
+						<div class="other-content-body no-display hidden">
 							<!---->
 							<div class="other-item-box" id="otherItemBox">
 								<div class="other-item"><i>今天吃什么</i><span class="iconfont icon-quxiao remove-item"></span></div>
@@ -66,8 +66,26 @@
 					</div>
 				</div>
 				<div class="box box-edit">
-					<div class="box-content edit-content">
+					<div class="box-content edit-content" id="editContent">
 						<h3 class="edit-content-tit">编辑当前转盘</h3>
+						<div class="edit-content-body no-display hidden">
+							<div class="item-detail" id="currentTurn">
+								<form action="" class="item-detail-form" id="currentTurnForm">
+									<input placeholder="在这里输入标题" type="text" name="" class="item-detail-tit" id="currentTurnTit">
+									<span class="line-br"></span>
+									<div class="other-item">
+										<input placeholder="添加项" type="text"><span class="iconfont icon-quxiao remove-item"></span>
+									</div>
+									<div class="other-item add-item" id="addItemCrt"><span class="iconfont icon-quxiao"></span></div>
+								</form>
+							</div>
+						</div>
+						<div class="other-content-foot">
+							<div class="control-box no-display" id="controlBoxCrt">
+								<div class="control control-use" id="controlUseCrt">开始</div>
+								<div class="control control-cancel" id="controlCancelCrt">取消</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

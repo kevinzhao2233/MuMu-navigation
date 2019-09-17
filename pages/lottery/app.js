@@ -97,7 +97,7 @@ $(document).ready(function () {
 	})
 })
 
-// 点击 其他转盘 板块，进入其中进行设置
+// 点击 '其他转盘' 板块，进入其中进行设置
 $(document).on('touchend', '.other-content', function () {
 	$('.box-edit').css('flex', '0');
 	$('.edit-content-tit').addClass('no-display');
@@ -107,6 +107,78 @@ $(document).on('touchend', '.other-content', function () {
 	setTimeout(function () {
 		$('.other-content-body').removeClass('hidden');
 	}, 300)
+})
+
+// 点击 '编辑当前转盘' 板块，进入其中设置
+$(document).on('touchend', function (ev) {
+	var turnLen = oTurn[editItemIndex].item.length;
+	if (ev.target.id == ('editContent')) {
+		$('.box-other').css('flex', '0');
+		$('.other-content-tit').addClass('no-display');
+		$('.edit-content').addClass('other-content-act');
+		$('.edit-content-tit').addClass('edit-content-tit-act');
+		console.log('完成样式部分1');
+		setTimeout(function () {
+			$('.edit-content-body').removeClass('hidden');
+			$('.edit-content-body').removeClass('no-display');
+			$('#controlBoxCrt').removeClass('no-display');
+
+			console.log('完成样式部分2');
+			// 遍历增加空的input
+			while ($('#currentTurnForm .other-item').length - 1 < turnLen) {
+				$('#addItemCrt').trigger('touchend');
+			}
+			console.log('完成增加input');
+			// 遍历将数据填入input
+			$('#currentTurnForm input').each(function (index) {
+				$(this).val(oTurn[editItemIndex].item[index - 1])
+			})
+
+			console.log('完成填充input');
+
+			$('#currentTurnTit').val(oTurn[editItemIndex].title);
+		}, 300)
+	}
+
+})
+
+$('#controlBoxCrt').on('touchend', function (ev) {
+	var cycle;
+	var r;
+	switch (ev.target.id) {
+		case 'controlUseCrt':			// 点击开始
+			oTempTurn.title = $('#currentTurnTit').val();
+			$('#currentTurnForm input').each(function (index) {		// 遍历，保存信息
+				oTempTurn.item[index - 1] = $(this).val();
+			})
+			oTurn.splice(editItemIndex, 1, oTempTurn);
+			localStorage.setItem('TURN', JSON.stringify(oTurn));
+			$('#controlBox').addClass('no-display');
+
+			$('.tit').html(oTurn[editItemIndex].title);
+			$('.card').html('谢谢参与');
+			cycle = Math.trunc(18 / oTurn[editItemIndex].item.length);
+			for (var i = 0; i < cycle; i++) {
+				r = 0;
+				for (var j = i * oTurn[editItemIndex].item.length; j < (i + 1) * oTurn[editItemIndex].item.length; j++) {
+					$('.card').eq(j).html(oTurn[editItemIndex].item[r]);
+					r++;
+				}
+			}
+			break;
+		case 'controlCancel':					// 点击取消
+			console.log('取消');
+			break;
+	}
+	// 回到最初界面
+	$('#currentTurnForm').html('<form action="" class="item-detail-form" id="currentTurnForm"><input placeholder="在这里输入标题" type="text" name="" class="item-detail-tit" id="currentTurnTit"><span class="line-br"></span><div class="other-item"><input placeholder="添加项" type="text"><span class="iconfont icon-quxiao remove-item"></span></div><div class="other-item add-item" id="addItemCrt"><span class="iconfont icon-quxiao"></span></di</form>')
+	$('.edit-content-body').addClass('hidden');
+	$('.edit-content-body').addClass('no-display');
+	$('#controlBoxCrt').addClass('no-display');
+	$('.other-content-tit').removeClass('no-display');
+	$('.edit-content').removeClass('other-content-act');
+	$('.edit-content-tit').removeClass('edit-content-tit-act');
+	$('.box-other').css('flex', '1');
 })
 
 // 选中某一个转盘
@@ -138,6 +210,15 @@ $(document).on('touchend', '#addItem', function () {
 	}
 })
 
+// 当前转盘--添加项
+$(document).on('touchend', '#addItemCrt', function () {
+	if ($('#currentTurnForm .other-item').length - 1 < 18) {
+		$('#addItemCrt').before('<div class="other-item"><input placeholder="添加项" type="text"><span class="iconfont icon-quxiao remove-item"></span></div>')
+	} else {
+		alert('最多只能添加18个项哦');
+	}
+})
+
 // 删除转盘或项, 删除转盘会有弹窗保护
 $(document).on('touchend', '.remove-item', function (ev) {
 	ev.stopPropagation()
@@ -150,7 +231,7 @@ $(document).on('touchend', '.remove-item', function (ev) {
 		$(this).parent().removeClass('other-item-act')
 		$('#controlBox').addClass('no-display');
 		$('#controlComplate, #controlCancel').removeClass('no-display');
-	} else if ($(this).parent().parent()[0].id == 'itemDetailForm') {
+	} else if ($(this).parent().parent()[0].id == 'itemDetailForm' || $(this).parent().parent()[0].id == 'currentTurnForm') {
 		$(this).parent().remove();
 	} else {
 		console.log('出错了吗')
@@ -212,7 +293,7 @@ $(document).on('touchend', '#controlUse', function () {
 	// 数据操作已经完成，回到初始界面的样式
 	$('.other-content-body').addClass('hidden');
 	setTimeout(function () {
-		$('.other-content-body').addClass('no-display');	
+		$('.other-content-body').addClass('no-display');
 		$('.edit-content-tit').removeClass('no-display');
 		$('.other-content').removeClass('other-content-act');
 		$('.other-content-tit').removeClass('other-content-tit-act');
@@ -230,9 +311,9 @@ $(document).on('touchend', '#controlEdit', function () {
 	$('#itemDetail, #controlComplate, #controlCancel').removeClass('no-display');
 
 	// 获取localStorage 中的信息，填写到表单中，改写后的由 点击“完成” 来控制
-	var tempStr = localStorage.getItem('TURN');
+	tempStr = localStorage.getItem('TURN');
 	oTempTurn = JSON.parse(tempStr)[editItemIndex];
-	var turnLen = oTempTurn.item.length;
+	turnLen = oTempTurn.item.length;
 	// 遍历增加空的input
 	while ($('#itemDetailForm .other-item').length - 1 < turnLen) {
 		$('#addItem').trigger('touchend');

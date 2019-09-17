@@ -10,7 +10,7 @@ h3 {
   padding: 0;
 }
 
-i{
+i {
   font-style: normal;
 }
 
@@ -159,6 +159,7 @@ body {
   font-weight: normal;
 }
 
+
 .other-content-body {
   position: relative;
   width: 100%;
@@ -302,6 +303,24 @@ body {
   font-weight: bold;
 }
 
+.edit-content-tit-act {
+  margin: 0;
+  font-size: .28rem;
+  letter-spacing: .01rem;
+  text-align: start;
+  font-weight: normal;
+}
+
+.edit-content-body {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  overflow: auto;
+  margin-top: .2rem;
+  visibility: visible;
+  transition: all 300ms;
+}
+
 
 
 
@@ -324,29 +343,29 @@ body {
   font-size: .28rem;
 }
 
-.warning h3{
+.warning h3 {
   flex: 1;
   margin: .2rem 0;
 }
 
-.warn-control{
+.warn-control {
   width: 100%;
   border-top: 1px solid #bac8e0;
   height: .72rem;
   display: flex;
-  
+
 }
 
-.warn-control div{
+.warn-control div {
   width: 50%;
   text-align: center;
 }
 
-.warn-control-l{
+.warn-control-l {
   border-right: 1px solid #bac8e0;
 }
 
-.warn-btn{
+.warn-btn {
   padding: 0 .5rem;
   line-height: .72rem;
 }
