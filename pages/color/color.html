@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ch-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="full-screen" content="true">
+	<meta name="orientation" content="portrait">
+	<meta name="browsermode" content="application">
+	<meta name="x5-orientatio" content="portrait">
+	<meta name="x5-full-screen" content="true">
+	<meta name="x5-page-mode" content="app">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="block">
+	<meta name="apple-mobile-web-app-title" content="">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>颜色转换</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="main">
+		<div class="form-box">
+			<div class="color-form hex-form">
+				<input type="text" class="color-input" id="hexInput" maxlength="9" tabindex="1" placeholder="hex颜色，如“#28cfe”" autocomplete="off">
+				<button class="btn" id="hexBtn">转换</button>
+			</div>
+			<div class="color-form rgb-form">
+				<input type="text" class="color-input" id="rgbInput" tabindex="2" placeholder="rgb颜色，如“40,206,254”" autocomplete="off">
+				<button class="btn" id="rgbBtn">转换</button>
+			</div>
+		</div>
+		<div class="show">
+			<span class="show-color" id="show"></span>
+			<span class="text-color" id="textColor">#000</span>
+		</div>
+	</div>
+</body>
+<script src="../../lib/zepto.js"></script>
+<script src="../../js/init.js"></script>
+<script src="./app.js"></script>
+
+</html>

@@ -10,12 +10,22 @@ var searchE = {
 
 
 $(document).ready(function () {
+	// ======== 设置 html 的 fontsize，确定 rem 单位的大小
+	var screenW = $(window).width();
+	var screenH = $(window).height();
+
+	// 刚开始屏幕横屏，则提示
+	if (screenH < screenW) {
+		$('.alert').addClass('show-alert');
+	} else {
+		$('.alert').removeClass('show-alert');
+	}
 	// 手机横屏后给出提示
-	window.addEventListener("orientationchange",function(){
-		if(window.orientation != 0){
+	window.addEventListener("orientationchange", function () {
+		if (window.orientation != 0) {
 			document.addEventListener('touchmove', preventDefault, { passive: false });
 			$('.alert').addClass('show-alert');
-		}else{
+		} else {
 			document.removeEventListener('touchmove', preventDefault, { passive: false });
 			$('.alert').removeClass('show-alert');
 		}
