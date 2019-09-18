@@ -27,6 +27,13 @@ $(document).ready(function () {
 		$('html').css('font-size', 100);
 	}
 
+	// 刚开始屏幕横屏，则提示
+	if(screenHeight < screenWidth){
+		$('.alert').addClass('show-alert');
+	}else{
+		$('.alert').removeClass('show-alert');
+	}
+
 	// 给页面一个固定的vh
 	document.documentElement.style.setProperty("--origin_vh", screenHeight + "px");
 
