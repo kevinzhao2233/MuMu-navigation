@@ -9,7 +9,7 @@ var oTempTurn = {				// 一个转盘
 var oTurn = [];
 
 // ======== 禁止页面滚动
-document.addEventListener('touchmove', preventDefault, { passive: false });
+// document.addEventListener('touchmove', preventDefault, { passive: false });
 
 $(document).ready(function () {
 
