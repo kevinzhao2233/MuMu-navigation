@@ -1,0 +1,87 @@
+body,
+a,
+div,
+button,
+span,
+p,
+h1,
+h3 {
+  margin: 0;
+  padding: 0;
+  font-size: .26rem;
+}
+
+input {
+  outline: none;
+  box-sizing: border-box;
+  border: none;
+}
+
+.main{
+	width: 100vw;
+	height: 120vw;
+	padding: 10vw 0;
+	display: flex;
+	flex-direction: column;
+	/* align-items: center; */
+	align-content: center;
+}
+
+.item{
+	width: 100vw;
+	height: 16vw;
+	padding: 0 5vw;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+}
+
+.tit{
+	flex: 0 0 16vw;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.input{
+	flex: 1;
+	width: 40vw;
+	height: 10vw;
+	box-sizing: border-box;
+	padding: 0 .22rem;
+	margin-left: 3vw;
+	border: 1px solid #f1f1f1;
+	border-top-left-radius: 1rem;
+	border-bottom-left-radius: 1rem;
+	font-size: .26rem;
+	transition: all .5s;
+}
+
+.btn{
+	flex: 0 0 14vw;
+	height: 10vw;
+	background-color: #fff;
+	border: 1px solid #f1f1f1;
+	font-size: .26rem;
+	line-height: 10vw;
+	letter-spacing: .02rem;
+}
+
+.btn-con{
+	border-top-right-radius: 1rem;
+	border-bottom-right-radius: 1rem;
+	margin-right: 2vw;
+	box-sizing: border-box;
+}
+
+.btn-copy{
+	border-radius: 1rem;
+}
+
+
+
+
+
+
+
+
+
