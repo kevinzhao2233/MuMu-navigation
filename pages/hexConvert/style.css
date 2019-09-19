@@ -69,6 +69,7 @@ input {
 .btn-con{
 	border-top-right-radius: 1rem;
 	border-bottom-right-radius: 1rem;
+	border-left: none;
 	margin-right: 2vw;
 	box-sizing: border-box;
 }
@@ -77,6 +78,19 @@ input {
 	border-radius: 1rem;
 }
 
+.err{
+	width: 100vw;
+	height: 8vw;
+	text-align: center;
+}
+
+.err span{
+	line-height: 8vw;
+	border: 1px solid #f5f5f5;
+	padding: .6vw 2vw;
+	border-radius: 1rem;
+	transition: all .5s;
+}
 
 
 
