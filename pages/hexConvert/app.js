@@ -2,11 +2,11 @@
 var inputNum, binNum, octNum, decNum, hexNum, isErr, errMessage;
 var convert;
 
-
 $(document).on('touchend', function (ev) {
 	inputNum = $(ev.target).prev().val()
 	errMessage = '';
 	switch (ev.target.id) {
+		// =============== 转换按钮
 		case 'conBin':
 			decNum = convert.toDec(inputNum, 2);
 			isErr = checkErr(errMessage);
@@ -36,7 +36,11 @@ $(document).on('touchend', function (ev) {
 			}
 			break;
 	}
-	console.log(isErr)
+})
+
+$(document).on('focus', '.input', function(){
+	$('#err').removeClass('alert');
+	$('#err').html('输入数据可以不用带前缀哦');
 })
 
 convert = {
@@ -69,7 +73,7 @@ convert = {
 				}
 				break;
 		}
-		console.log('正则是否验证通过：',test)
+		console.log('正则是否验证通过：', test)
 		// 返回结果
 		if (errMessage != 'err1') {
 			temp = inputN.split('.');
@@ -82,7 +86,7 @@ convert = {
 			}
 			console.log('十进制：', result);
 			return (result);
-		}else{
+		} else {
 			console.log('进制输入错误')
 		}
 	},
@@ -103,15 +107,19 @@ function showNum(binN, octN, decN, hexN) {
 }
 
 function checkErr(err) {
-	console.log('err类型',err)
+	console.log('err类型', err)
 	if (err == 'err1') {
-		$('#err').html('请检查进制是否正确')
+		$('#err').html('请检查进制是否正确');
+		$('#err').addClass('alert');
 		return ('err')
 	} else if (err == 'err2') {
-		$('#err').html('请检查小数点哦')
+		$('#err').html('请检查小数点哦');
+		$('#err').addClass('alert');
 		return ('err')
 	} else {
-		return ('noErr')
+		$('#err').removeClass('alert');
+		$('#err').html('可以长按复制哦');
+		return ('noErr');
 	}
 }
 
