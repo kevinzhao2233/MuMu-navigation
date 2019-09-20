@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="full-screen" content="true">
+	<meta name="orientation" content="portrait">
+	<meta name="browsermode" content="application">
+	<meta name="x5-orientatio" content="portrait">
+	<meta name="x5-full-screen" content="true">
+	<meta name="x5-page-mode" content="app">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="block">
+	<meta name="apple-mobile-web-app-title" content="">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>翻译</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../../static/icon/iconfont.css">
+</head>
+
+<body>
+	<div class="main">
+		<div class="inputBox">
+			<input class="input" id="input" placeholder="输入单词或句子"></input>
+			<div class="placehold">
+				<div class="clear" id="clear"><span class="iconfont icon-quxiao1"></span></div>
+			</div>
+			<input id="translate" class="btn-go" type="button" value="翻译">
+		</div>
+		<div class="output" id="output">
+			<div class="main-result" id="mainResult">
+				<h3></h3>
+				<div class="phonetic">
+					<span class="us-phonetic"></span>
+					<span class="uk-phonetic"></span>
+				</div>
+				<div class="part-of-speech">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../../lib/zepto.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/js-sha256/build/sha256.min.js"></script>
+<script src="../../js/init.js"></script>
+<script src="./translate.js"></script>
+<script src="./app.js"></script>
+
+</html>
