@@ -23,21 +23,55 @@
 <body>
 	<div class="main">
 		<div class="inputBox">
-			<input class="input" id="input" placeholder="输入单词或句子"></input>
+			<input class="input" id="input" value="innovation"  placeholder="输入单词或句子"></input>
 			<div class="placehold">
 				<div class="clear" id="clear"><span class="iconfont icon-quxiao1"></span></div>
 			</div>
 			<input id="translate" class="btn-go" type="button" value="翻译">
 		</div>
 		<div class="output" id="output">
-			<div class="main-result" id="mainResult">
+			<div class="big-box main-result" id="mainResult">
 				<h3></h3>
 				<div class="phonetic">
-					<span class="us-phonetic"></span>
-					<span class="uk-phonetic"></span>
+					<span id="usPhonetic"></span>
+					<audio id="usPhoneticAudio" src=""></audio>
+					<span id="ukPhonetic"></span>
+					<audio id="ukPhoneticAudio" src=""></audio>
 				</div>
-				<div class="part-of-speech">
-					
+				<!-- 如果为中文，则将查到的英文进行翻译，填写到下方 -->
+				<div class="part-of-speech" id="partOfSpeech">
+
+				</div>
+			</div>
+			<!-- ------------------------------------- -->
+			<div class="gap main-other no-display"></div>
+
+			<div class="big-box other no-display">
+				<div class="derive-box">
+					<h3 class="box-tit no-display">派生词</h3>
+					<div class="derive" id="derive"></div>
+				</div>
+				<div class="exam-box">
+					<h3 class="box-tit no-display">考试</h3>
+					<i class="exam" id="exam"></i>
+				</div>
+			</div>
+			<!-- ------------------------------------- -->
+			<div class="gap other-web no-display"></div>
+
+			<div class="big-box webTranslate no-display">
+				<h3 class="box-tit">网络译义</h3>
+				<div class="web-item">
+					<h4 class="web-item-tit"></h4>
+					<p class="web-item-con"></p>
+				</div>
+				<div class="web-item">
+					<h4 class="web-item-tit"></h4>
+					<p class="web-item-con"></p>
+				</div>
+				<div class="web-item">
+					<h4 class="web-item-tit"></h4>
+					<p class="web-item-con"></p>
 				</div>
 			</div>
 		</div>
