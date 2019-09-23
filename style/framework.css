@@ -160,7 +160,7 @@ a:visited {
   justify-content: space-between;
   align-items: center;
   width: 18vw;
-  height: 18vw;
+  height: 20vw;
   border-radius: 3vw;
   padding: 2vw 0;
   box-sizing: border-box;
@@ -168,8 +168,8 @@ a:visited {
 
 .fast-icon {
   position: relative;
-  width: 10vw;
-  height: 10vw;
+  width: 12vw;
+  height: 12vw;
   border-radius: 50%;
   background-color: #ffffff;
   overflow: hidden;
@@ -184,12 +184,13 @@ a:visited {
   background-size: cover;
 }
 
-.fast-icon img {
+.fast-icon-link img {
   position: absolute;
-  width: 10vw;
-  height: 10vw;
+  width: 12vw;
   border-radius: 50%;
+  background-color: #fff;
 }
+
 
 .fast-icon-fg {
   display: none;
@@ -214,9 +215,12 @@ a:visited {
   position: absolute;
   width: 5vw;
   height: 5vw;
+  line-height: 5vw;
   background-color: rgba(120, 120, 120, 0.678);
   border-radius: 50%;
-  color: #454545;
+  color: rgb(190, 188, 188);
+  font-size: 3.2vw !important;
+  font-weight: 800;
   text-align: center;
   transform: translate3d(5vw, -1vw, 0);
 }
@@ -240,11 +244,16 @@ a:visited {
 
 .add-fast {
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.603);
 }
 
 .add-fast span {
-  height: 10vw;
-  line-height: 10vw;
+  display: block;
+  height: 12vw;
+  line-height: 12vw;
+  transform: rotate(45deg);
+  font-weight: 800;
+  color: #999999;
 }
 
 /* ======== 添加按钮弹出框 */

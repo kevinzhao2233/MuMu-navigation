@@ -53,6 +53,7 @@ $(document).ready(function () {
 			$('#searchInput').trigger('focus');
 		}, 150);
 	})
+
 	// 收回搜索框
 	$(document).on('touchend', '#searchCancel', function () {
 		$('#searchInput').trigger('blur');
@@ -71,9 +72,9 @@ $(document).ready(function () {
 	})
 
 	// 更换搜索引擎
-	changeSearchE(this.id, searchENumber);
 	$('#searchE_item span').on('touchend', function () {
 		searchENumber = $(this).index();
+		changeSearchE(this.id, searchENumber);
 	})
 
 	// ======== 快捷按钮板块

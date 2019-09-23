@@ -2,6 +2,7 @@
 function search(whSearch) {				// 接收 string
 	if ($('#searchInput').val() != "") {
 		window.location.href = searchE[whSearch + ""] + $('#searchInput').val();
+		console.log(searchE[whSearch + ""]);
 		$("#searchInput").val("");
 	}
 	return false;
@@ -25,12 +26,13 @@ function addFastBtn(fastIndex) {
 		var newElement = '<div class="fast-item bg2">' +
 			"<a href = " + fastUrl +
 			" class= 'fast-icon  fast-icon-link'>" +
+			'<img class="" src=' + fastUrl + '/favicon.ico' + ' alt="" srcset="">' +
 			'</a>' +
 			'<span class="iconfont icon-ziyuan fast-icon-fg">' +
 			'</span>' +
 			'<span class="fast-title">' + fastTit +
 			'</span>' +
-			'<span class="iconfont icon- remove-fast-icon"></span>' +
+			'<span class="iconfont icon-quxiao1 remove-fast-icon"></span>' +
 			'</div >\n';
 		if (fastIndex < $('#addFast').index()) {		// 编辑之前的按钮
 			$('#fastContent').children().eq(fastIndex).replaceWith(newElement);
@@ -57,12 +59,12 @@ function addFastBtn(fastIndex) {
 }
 
 // ======== 删除按钮
-function removeFast(fastIndex){
+function removeFast(fastIndex) {
 	$('#fastContent').children().eq(fastIndex).remove();
 }
 
 // ======== 保存当前按钮的盒子
-function saveFastToLocals(){
+function saveFastToLocals() {
 	localStorage.setItem("FAST_CONTENT", $('#fastContent').html());
 }
 
