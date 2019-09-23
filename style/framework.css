@@ -20,7 +20,7 @@ input {
 }
 
 :root {
-  --theme_color: #a04cf7;
+  --theme_color: #802cff;
   --origin_vh: 100vh;
   /* 页面刚加载高度，即屏幕高度；默认100vh可以减少load前的页面抖动 */
 }
@@ -79,7 +79,7 @@ a:visited {
   border-radius: 50%;
   background-color: var(--theme_color);
   transform: translate3d(-100vw, calc(var(--origin_vh) * 0.78 - 300vw), 0);
-  box-shadow: 0 2vw 6vw #bb7cff;
+  box-shadow: 0 0vw 12vw var(--theme_color);
 }
 
 /* ===== 调用搜索时被加入DOM */
@@ -195,14 +195,14 @@ a:visited {
 .fast-icon-fg {
   display: none;
   position: absolute;
-  width: 10vw;
-  height: 10vw;
+  width: 12vw;
+  height: 12vw;
   border-radius: 50%;
   background-color: rgba(228, 228, 228, 0.4);
   font-size: 5vw !important;
   font-weight: 600;
   text-align: center;
-  line-height: 10vw;
+  line-height: 12vw;
 }
 
 .fast-icon-edit {
@@ -386,7 +386,7 @@ a:visited {
   border: 1px solid #454545;
   border-radius: 1rem;
   background-color: #fff;
-  box-shadow: .5vw 1vw 3vw #cb9aff;
+  box-shadow: .5vw 1vw 4vw -1vw var(--theme_color);
 }
 
 .search-e-icon {
@@ -662,11 +662,11 @@ a:visited {
 .set-chose-box span {
   background-color: var(--theme_color);
   border-radius: 50%;
-  border: 2px solid #b6b6b6;
+  border: 3px solid #b6b6b6;
 }
 
 .set-chose-box span.chose {
-  border: 2px solid var(--theme_color);
+  border: 3px solid var(--theme_color);
 }
 
 .set-chose-small span {
@@ -677,6 +677,26 @@ a:visited {
 .set-chose-big span {
   width: 10vw;
   height: 10vw;
+}
+
+#theme :nth-child(1){
+  background-color: #802cff;
+}
+
+#theme :nth-child(2){
+  background-color: #e92cff;
+}
+
+#theme :nth-child(3){
+  background-color: #ff802c;
+}
+
+#theme :nth-child(4){
+  background-color: #2c41ff;
+}
+
+#theme :nth-child(5){
+  background-color: #fc6588;
 }
 
 #searchE_item span {

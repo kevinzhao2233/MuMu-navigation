@@ -77,6 +77,18 @@ $(document).ready(function () {
 		changeSearchE(this.id, searchENumber);
 	})
 
+	// ======== 更换主题板块
+	// 点击选择主题
+	$('#theme').on('touchend', function(ev){
+		var whTheme = [];
+		whTheme[0] = $(ev.target).index();
+		whTheme[1] = $(ev.target).css("background-color");
+		localStorage.setItem("THEME", JSON.stringify(whTheme));
+		document.documentElement.style.setProperty("--theme_color", whTheme[1]);
+		$('#theme').children().removeClass('chose')
+		$('#theme').children().eq(whTheme[0]).addClass('chose')
+	})
+
 	// ======== 快捷按钮板块
 	// 添加按钮
 	$(document).on('touchend', '#addFast', function () {

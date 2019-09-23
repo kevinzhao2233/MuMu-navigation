@@ -21,6 +21,14 @@
 </head>
 
 <body>
+	<script>
+		// ======== 主题色
+		if (localStorage.getItem("THEME")) {
+			var theme = JSON.parse(localStorage.getItem("THEME"))
+			document.documentElement.style.setProperty("--theme_color", theme[1]);
+		}
+	</script>
+
 	<div class="alert">
 		为了更好的体验，请不要横屏使用设备哦
 	</div>
@@ -167,7 +175,7 @@
 					<span class="iconfont icon-pifu"></span>
 					主题
 				</h3>
-				<div class="set-chose-box set-chose-small">
+				<div class="set-chose-box set-chose-small" id="theme">
 					<span></span>
 					<span></span>
 					<span></span>
@@ -188,17 +196,7 @@
 					<span id="sougou"></span>
 				</div>
 			</div>
-			<div class="set-item translateE">
-				<h3 class="set-item-tit">
-					<span class="iconfont icon-translate"></span>
-					翻译引擎
-				</h3>
-				<div class="set-chose-box set-chose-big">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-			</div>
+
 			<div class="set-th"></div>
 			<div class="set-item agreement">
 				<h3 class="set-item-tit">
