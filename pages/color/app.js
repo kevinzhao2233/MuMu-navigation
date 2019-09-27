@@ -22,7 +22,9 @@ $(document).ready(function () {
 				break;
 			case 'rgbBtn':
 				rgb = $('#rgbInput').val().toString().toUpperCase().match(/\d+/g);
+				console.log('rgb', rgb)
 				res = checkRgb(rgb);
+				console.log('res', res);
 				if (res == 'err') {
 					$('#textColor').html('请输入正确的rgb()颜色值！');
 					$('#textColor').addClass('err');
@@ -62,27 +64,29 @@ $(document).ready(function () {
 		for (var o = 0; o < 3; o++) {
 			result[o] = parseInt(temp[o], 16);
 		}
-		console.log(result.toString());
 		return ('rgb(' + result.toString() + ')');
 	}
 
 	function checkRgb(rgb) {
-		var temp = rgb.concat();
+		var temp;
 		var result = [];
-		for (var i = 0; i < 3; i++) {
-			if (temp[i] > 255) {
-				return ('err')
-			} else {
-				result[i] = parseInt(temp[i]).toString(16);		// 进制转换是数字之间的转换
+		if (rgb && rgb.length == 3) {
+			temp = rgb.concat();
+			for (var i = 0; i < 3; i++) {
+				if (temp[i] > 255) {
+					return ('err')
+				} else {
+					result[i] = parseInt(temp[i]).toString(16);		// 进制转换是数字之间的转换
+				}
 			}
-		}
-		// console.log();
-		for (var j = 0; j < 3; j++) {
-			if (result[j].toString().length == 1) {
-				result[j] = '0' + result[j];
+			for (var j = 0; j < 3; j++) {
+				if (result[j].toString().length == 1) {
+					result[j] = '0' + result[j];
+				}
 			}
+			return ('#' + result[0] + result[1] + result[2]);
+		} else {
+			return ('err');
 		}
-		return ('#' + result[0] + result[1] + result[2]);
 	}
-
 })
