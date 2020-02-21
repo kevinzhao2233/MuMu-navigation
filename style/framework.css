@@ -52,7 +52,11 @@ a:visited {
   z-index: 10000;
 }
 
-.show-alert{
+.no-display{
+  display: none;
+}
+
+.display-block {
   display: block;
 }
 
@@ -594,7 +598,7 @@ a:visited {
 }
 
 .set-item {
-  padding: 1vw 4vw;
+  padding: 2vw 4vw;
   font-size: .32rem;
 }
 

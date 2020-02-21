@@ -15,10 +15,13 @@ $(document).ready(function () {
 
 	// 刚开始屏幕横屏，则提示
 	if (screenH < screenW) {
-		$('.alert').addClass('show-alert');
+		$('.alert').addClass('display-block');
+		$('.main').addClass('no-display');
 	} else {
-		$('.alert').removeClass('show-alert');
+		$('.alert').removeClass('display-block');
+		$('.main').removeClass('no-display');
 	}
+	
 	// 手机横屏后给出提示
 	window.addEventListener("orientationchange", function () {
 		if (window.orientation != 0) {
